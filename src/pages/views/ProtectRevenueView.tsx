@@ -1,4 +1,4 @@
-import { TriangleAlert, TrendingDown, PenLine, Eye } from 'lucide-react'
+import { TriangleAlert, PenLine, Eye } from 'lucide-react'
 import { PageHeader } from '../../components/layout/PageHeader'
 import { GlassCard } from '../../components/ui/GlassCard'
 import { SectionContainer } from '../../components/ui/SectionContainer'

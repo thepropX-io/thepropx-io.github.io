@@ -16,7 +16,7 @@ interface Props {
 }
 
 export function PushLiveMatchView({ detail }: Props) {
-  const { insight, metrics, sections, bullets, recommendations, recTags, actions } = detail
+  const { insight, metrics, sections, bullets, recommendations, recTags } = detail
   const [showAllMatches, setShowAllMatches] = useState(false)
 
   // Parse metrics into mandate display values
