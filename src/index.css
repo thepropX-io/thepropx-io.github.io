@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+@theme {
+  --color-px-dark: #0a0b10;
+  --color-px-card: rgba(255, 255, 255, 0.03);
+  --color-px-border: rgba(255, 255, 255, 0.06);
+  --color-px-purple: #9333ea;
+  --color-px-purple-glow: rgba(147, 51, 234, 0.35);
+  --color-px-emerald: #34d399;
+  --color-px-red: #f87171;
+  --color-px-amber: #fbbf24;
+}
+
+body {
+  margin: 0;
+  background: #0a0b10;
+  color: rgba(255, 255, 255, 0.88);
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.px-gradient-bg {
+  background: linear-gradient(180deg, #0a0b10 0%, #0d0e16 40%, #10111a 100%);
+}
+
+.px-glass {
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+}
+
+.px-glow-left {
+  border-left: 2px solid #9333ea;
+  box-shadow: -4px 0 20px -4px rgba(147, 51, 234, 0.35);
+}
+
+.px-glow-red {
+  border-color: rgba(248, 113, 113, 0.2);
+  box-shadow: 0 0 30px -8px rgba(248, 113, 113, 0.15);
+}
+
+.px-glow-emerald {
+  border-color: rgba(52, 211, 153, 0.4);
+  box-shadow: 0 0 20px -8px rgba(52, 211, 153, 0.15);
+}
+
+.px-glow-amber {
+  border-color: rgba(251, 191, 36, 0.3);
+  box-shadow: 0 0 20px -8px rgba(251, 191, 36, 0.12);
+}
+
+/* Per-type left-border accents */
+.px-glow-left-green {
+  border-left: 2px solid #34d399;
+  box-shadow: -4px 0 20px -4px rgba(52, 211, 153, 0.35);
+}
+
+.px-glow-left-red {
+  border-left: 2px solid #f87171;
+  box-shadow: -4px 0 20px -4px rgba(248, 113, 113, 0.35);
+}
+
+.px-glow-left-amber {
+  border-left: 2px solid #fbbf24;
+  box-shadow: -4px 0 20px -4px rgba(251, 191, 36, 0.35);
+}
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in { animation: fade-in-up 0.5s ease-out both; }
+.animate-fade-in-d1 { animation: fade-in-up 0.5s ease-out 0.1s both; }
+.animate-fade-in-d2 { animation: fade-in-up 0.5s ease-out 0.2s both; }
+.animate-fade-in-d3 { animation: fade-in-up 0.5s ease-out 0.3s both; }
+.animate-fade-in-d4 { animation: fade-in-up 0.5s ease-out 0.4s both; }
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 3px; }
+
+/* Insight card hover brightening */
+.px-insight-card {
+  transition: filter 0.18s ease, transform 0.18s ease;
+}
+.px-insight-card:hover {
+  filter: brightness(1.07);
+  transform: translateY(-1px);
+}
