@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>PropX Intelligence</title>
+    <script>
+      // GitHub Pages SPA routing — stores the full URL then redirects to /
+      // index.html picks it up and restores the correct React Router path.
+      sessionStorage.redirect = location.href;
+      window.location.replace(location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '') + '/');
+    </script>
+  </head>
+  <body></body>
+</html>

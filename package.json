@@ -7,7 +7,10 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "load:transactions": "node ../tools/load_transactions.js",
+    "seed:intelligence": "psql \"postgresql://postgres:postgres@127.0.0.1:54322/postgres\" -f ../tools/seed_intelligence.sql",
+    "refresh": "node ../tools/load_transactions.js && psql \"postgresql://postgres:postgres@127.0.0.1:54322/postgres\" -f ../tools/seed_intelligence.sql"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.101.1",
