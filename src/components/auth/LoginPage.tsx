@@ -5,6 +5,7 @@ export function LoginPage() {
   const { signIn, signUp } = useAuth()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [name, setName] = useState('')
   const [isSignUp, setIsSignUp] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
@@ -16,7 +17,7 @@ export function LoginPage() {
     setLoading(true)
     try {
       if (isSignUp) {
-        await signUp(email, password)
+        await signUp(email, password, name)
         setSignUpSuccess(true)
       } else {
         await signIn(email, password)
@@ -59,6 +60,23 @@ export function LoginPage() {
             {error && (
               <div className="rounded-lg border border-red-500/20 bg-red-500/10 px-3 py-2 text-sm text-red-400">
                 {error}
+              </div>
+            )}
+
+            {isSignUp && (
+              <div>
+                <label htmlFor="name" className="block text-xs uppercase tracking-wider text-white/30 mb-1.5">
+                  Full Name
+                </label>
+                <input
+                  id="name"
+                  type="text"
+                  required
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  className="w-full rounded-lg border border-white/10 bg-white/[0.03] px-4 py-2.5 text-sm text-white outline-none focus:border-purple-500/50 transition-colors"
+                  placeholder="Your full name"
+                />
               </div>
             )}
 
@@ -105,7 +123,7 @@ export function LoginPage() {
               {isSignUp ? 'Already have an account?' : "Don't have an account?"}{' '}
               <button
                 type="button"
-                onClick={() => { setIsSignUp(!isSignUp); setError(null) }}
+                onClick={() => { setIsSignUp(!isSignUp); setError(null); setName('') }}
                 className="text-purple-400 hover:text-purple-300 cursor-pointer"
               >
                 {isSignUp ? 'Sign in' : 'Sign up'}

@@ -14,7 +14,7 @@ export function PageHeader({ backLabel = 'Back to Top Actions', contextIcon, con
   return (
     <div className="flex items-center gap-3 border-b border-white/[0.06] px-5 py-3">
       <button
-        onClick={() => navigate('/')}
+        onClick={() => navigate(-1)}
         className="flex items-center gap-1.5 text-sm text-white/40 hover:text-white/70 transition-colors cursor-pointer"
       >
         <ArrowLeft size={14} />

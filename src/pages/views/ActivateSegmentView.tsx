@@ -5,49 +5,32 @@ import { SectionContainer } from '../../components/ui/SectionContainer'
 import { CTAButton } from '../../components/ui/CTAButton'
 import { Tag } from '../../components/ui/Tag'
 import { Pill } from '../../components/ui/Pill'
-import type { InsightDetail, InsightSection, InsightBullet } from '../../types'
+import type { InsightDetail, InsightBullet } from '../../types'
 
 interface Props {
   detail: InsightDetail
 }
 
-function SectionBlock({ section, bullets, allSections, allBullets }: {
-  section: InsightSection
+function SubSection({ title, bullets, isLast = false }: {
+  title: string | null
   bullets: InsightBullet[]
-  allSections: InsightSection[]
-  allBullets: InsightBullet[]
+  isLast?: boolean
 }) {
-  const childSections = allSections.filter(s => s.parent_section_id === section.id)
-
   return (
-    <div className="mb-4">
-      {section.section_title && (
-        <p className="text-[10px] font-semibold uppercase tracking-wider text-white/30 mb-2">
-          {section.section_title}
+    <div className={isLast ? '' : 'mb-5 pb-5 border-b border-white/[0.06]'}>
+      {title && (
+        <p className="text-[10px] font-semibold uppercase tracking-wider text-white/30 mb-2.5">
+          {title}
         </p>
       )}
-      {bullets.length > 0 && (
-        <ul className="space-y-1.5 mb-3">
-          {bullets.map(b => (
-            <li key={b.id} className="flex items-start gap-2 text-sm text-white/60">
-              <span className="mt-1.5 h-1 w-1 rounded-full bg-white/20 shrink-0" />
-              {b.bullet_text}
-            </li>
-          ))}
-        </ul>
-      )}
-      {section.body_text && (
-        <p className="text-sm font-semibold text-white/80">{section.body_text}</p>
-      )}
-      {childSections.map(child => (
-        <SectionBlock
-          key={child.id}
-          section={child}
-          bullets={allBullets.filter(b => b.section_id === child.id)}
-          allSections={allSections}
-          allBullets={allBullets}
-        />
-      ))}
+      <ul className="space-y-2">
+        {bullets.map(b => (
+          <li key={b.id} className="flex items-start gap-2 text-sm text-white/60 leading-relaxed">
+            <span className="mt-1.5 h-1 w-1 rounded-full bg-white/20 shrink-0" />
+            {b.bullet_text}
+          </li>
+        ))}
+      </ul>
     </div>
   )
 }
@@ -55,8 +38,19 @@ function SectionBlock({ section, bullets, allSections, allBullets }: {
 export function ActivateSegmentView({ detail }: Props) {
   const { insight, labels, sections, bullets, recommendations } = detail
 
-  // Top-level sections (no parent)
-  const topSections = sections.filter(s => !s.parent_section_id)
+  const whyNowSection = sections.find(s => s.section_key === 'why_now')
+  const whyNowBullets = whyNowSection
+    ? bullets.filter(b => b.section_id === whyNowSection.id)
+    : []
+
+  const momentumSection = sections.find(s => s.section_key === 'segment_momentum')
+  const momentumChildren = momentumSection
+    ? sections
+        .filter(s => s.parent_section_id === momentumSection.id)
+        .sort((a, b) => a.display_order - b.display_order)
+    : []
+
+  const conclusionSection = sections.find(s => s.section_key === 'conclusion')
 
   // Summary stats from context_data
   const ctx = insight.context_data ?? {}
@@ -77,27 +71,50 @@ export function ActivateSegmentView({ detail }: Props) {
           <div className="mb-10 animate-fade-in">
             <h1 className="text-2xl font-bold text-white mb-2">{insight.title}</h1>
             <p className="text-sm text-white/40">{insight.summary}</p>
-            {(activeUnits || avgDom) && (
-              <p className="text-sm text-white/30 mt-1">
-                {activeUnits && <>{activeUnits} competing units currently active. </>}
-                {avgDom && <>Average DOM: {avgDom} days. </>}
-                {insight.subtitle}
+            {(activeUnits != null || (avgDom != null && avgDom > 0)) && (
+              <p className="text-sm text-white/30 mt-1.5">
+                {activeUnits != null && <>{activeUnits} competing units currently active.</>}
+                {avgDom != null && avgDom > 0 && <> Avg DOM: {Math.round(avgDom)} days.</>}
               </p>
             )}
+            {insight.subtitle && (
+              <p className="text-sm text-white/25 mt-0.5">{insight.subtitle}</p>
+            )}
           </div>
+
+          {/* Why Now */}
+          {whyNowBullets.length > 0 && (
+            <SectionContainer title="Why Now" icon={<TrendingUp size={14} className="text-purple-400" />}>
+              <GlassCard>
+                <ul className="space-y-2">
+                  {whyNowBullets.map(b => (
+                    <li key={b.id} className="flex items-start gap-2 text-sm text-white/60 leading-relaxed">
+                      <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-purple-400/60 shrink-0" />
+                      {b.bullet_text}
+                    </li>
+                  ))}
+                </ul>
+              </GlassCard>
+            </SectionContainer>
+          )}
 
           {/* Segment Momentum */}
           <SectionContainer title="Segment Momentum" icon={<TrendingUp size={14} className="text-purple-400" />}>
             <GlassCard>
-              {topSections.map(section => (
-                <SectionBlock
+              {momentumChildren.map((section, idx) => (
+                <SubSection
                   key={section.id}
-                  section={section}
+                  title={section.section_title}
                   bullets={bullets.filter(b => b.section_id === section.id)}
-                  allSections={sections}
-                  allBullets={bullets}
+                  isLast={idx === momentumChildren.length - 1 && !conclusionSection?.body_text}
                 />
               ))}
+
+              {conclusionSection?.body_text && (
+                <p className="text-sm font-semibold text-white/80 mt-5 pt-5 border-t border-white/[0.06]">
+                  {conclusionSection.body_text}
+                </p>
+              )}
 
               {labels.length > 0 && (
                 <div className="flex flex-wrap gap-2 mt-4 pt-3 border-t border-white/[0.06]">
@@ -124,7 +141,7 @@ export function ActivateSegmentView({ detail }: Props) {
                         )}
                       </div>
                       {rec.reason_summary && (
-                        <p className="text-sm text-white/40 ml-6">{rec.reason_summary}</p>
+                        <p className="text-sm text-white/40 ml-6 leading-relaxed">{rec.reason_summary}</p>
                       )}
                       <div className="flex items-center gap-2 mt-1.5 ml-6 text-xs text-white/30">
                         {rec.budget_min_aed && rec.budget_max_aed && (
@@ -133,7 +150,7 @@ export function ActivateSegmentView({ detail }: Props) {
                         {rec.yield_target_pct && (
                           <><span>·</span><span>{rec.yield_target_pct}%+ yield</span></>
                         )}
-                        {rec.investment_horizon && (
+                        {rec.investment_horizon && rec.investment_horizon !== 'N/A' && (
                           <><span>·</span><span>{rec.investment_horizon}</span></>
                         )}
                       </div>

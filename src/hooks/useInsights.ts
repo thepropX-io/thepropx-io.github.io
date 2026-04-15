@@ -27,7 +27,10 @@ export function useInsightFeed(brokerId?: string) {
         .from('v_insight_feed')
         .select('*')
         .eq('is_active', true)
-        .order('priority_score', { ascending: false })
+        // Primary: newest first. For items with identical timestamps (batch inserts),
+        // tie-break by `id` (UUID) to avoid grouping identical-type batches together.
+        .order('created_at', { ascending: false })
+        .order('id', { ascending: false })
 
       if (brokerId) {
         query = query.eq('broker_id', brokerId)

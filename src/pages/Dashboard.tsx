@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { Header } from '../components/layout/Header'
 import { InsightCard } from '../components/cards/InsightCard'
 import { Loader } from '../components/ui/Loader'
@@ -55,11 +56,26 @@ const FILTERS: { key: FilterType; label: string; inactiveColor: string; activeSt
 export function Dashboard() {
   const { user, signOut } = useAuth()
   const { brokers } = useBrokers()
-  const broker = brokers.find(b => b.email === user?.email)
+  const broker = brokers.find(b => b.email === user?.email) ?? brokers[0]
   const { items, loading, error } = useInsightFeed(broker?.id)
-  const [activeFilter, setActiveFilter] = useState<FilterType>('all')
+  const [searchParams, setSearchParams] = useSearchParams()
+  const [activeFilter, setActiveFilter] = useState<FilterType>(
+    (searchParams.get('filter') as FilterType) ?? 'all'
+  )
 
-  const firstName = broker?.name?.split(' ')[0] ?? user?.email?.split('@')[0] ?? 'there'
+  useEffect(() => {
+    const param = searchParams.get('filter') as FilterType | null
+    if (param && param !== activeFilter) setActiveFilter(param)
+  }, [])
+
+  // Name priority: user metadata (from sign-up) → matched broker name → email prefix
+  const matchedBroker = brokers.find(b => b.email === user?.email)
+  const displayName =
+    user?.user_metadata?.name?.trim() ||
+    matchedBroker?.name ||
+    user?.email?.split('@')[0] ||
+    'there'
+  const firstName = displayName.split(' ')[0]
 
   const filtered = activeFilter === 'all'
     ? items
@@ -69,7 +85,7 @@ export function Dashboard() {
 
   return (
     <div className="min-h-screen px-gradient-bg flex flex-col">
-      <Header brokerName={broker?.name ?? user?.email ?? ''} onSignOut={signOut} />
+      <Header brokerName={displayName} onSignOut={signOut} />
 
       <main className="flex-1 flex flex-col items-center px-4 sm:px-6 py-8 overflow-auto">
         <div className="w-full max-w-[1000px]">
@@ -107,7 +123,14 @@ export function Dashboard() {
                 return (
                   <button
                     key={f.key}
-                    onClick={() => setActiveFilter(f.key)}
+                    onClick={() => {
+                      setActiveFilter(f.key)
+                      if (f.key === 'all') {
+                        setSearchParams({}, { replace: true })
+                      } else {
+                        setSearchParams({ filter: f.key }, { replace: true })
+                      }
+                    }}
                     className={`inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-[11px] font-semibold tracking-wide transition-all duration-150 cursor-pointer ${isActive ? f.activeStyle : f.inactiveColor + ' hover:brightness-125'}`}
                   >
                     {isActive && (

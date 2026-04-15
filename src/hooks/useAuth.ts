@@ -30,8 +30,12 @@ export function useAuth() {
     if (error) throw error
   }, [])
 
-  const signUp = useCallback(async (email: string, password: string) => {
-    const { error } = await supabaseAuth.auth.signUp({ email, password })
+  const signUp = useCallback(async (email: string, password: string, name?: string) => {
+    const { error } = await supabaseAuth.auth.signUp({
+      email,
+      password,
+      options: { data: { name: name?.trim() || '' } },
+    })
     if (error) throw error
   }, [])
 

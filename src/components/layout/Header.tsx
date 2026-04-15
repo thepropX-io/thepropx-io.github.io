@@ -1,4 +1,5 @@
 import { LogOut, Zap } from 'lucide-react'
+import { useAuth } from '../../hooks/useAuth'
 
 interface HeaderProps {
   brokerName?: string
@@ -6,6 +7,13 @@ interface HeaderProps {
 }
 
 export function Header({ brokerName, onSignOut }: HeaderProps) {
+  const { user } = useAuth()
+
+  // Prefer showing the authenticated user's email in the top-right pill
+  // Fallback to brokerName or user metadata name if email is not available
+  const nameToShow =
+    user?.email || brokerName || user?.user_metadata?.name?.trim() || ''
+
   return (
     <header className="h-14 border-b border-white/[0.06] flex items-center justify-between px-6 relative">
       {/* Brand */}
@@ -23,11 +31,11 @@ export function Header({ brokerName, onSignOut }: HeaderProps) {
       </div>
 
       {/* Right: live indicator + broker name + signout */}
-      {brokerName && (
+      {nameToShow && (
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-2 bg-white/[0.03] border border-white/[0.06] rounded-full px-3 py-1.5">
             <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
-            <span className="text-xs text-white/50 font-medium">{brokerName}</span>
+            <span className="text-xs text-white/50 font-medium">{nameToShow}</span>
           </div>
           {onSignOut && (
             <button
