@@ -13,7 +13,7 @@ function getGreeting(): string {
   return 'Good evening'
 }
 
-type FilterType = 'all' | 'push_live_match' | 'activate_segment' | 'protect_revenue' | 'reallocate_focus'
+type FilterType = 'all' | 'push_live_match' | 'activate_segment' | 'protect_revenue' | 'reallocate_focus' | 'inactive'
 
 const FILTERS: { key: FilterType; label: string; inactiveColor: string; activeStyle: string; dot: string }[] = [
   {
@@ -51,13 +51,20 @@ const FILTERS: { key: FilterType; label: string; inactiveColor: string; activeSt
     activeStyle: 'text-amber-400 border-amber-500/40 bg-amber-500/[0.08]',
     dot: 'bg-amber-400',
   },
+  {
+    key: 'inactive',
+    label: 'Inactive',
+    inactiveColor: 'text-white/25 border-white/[0.06] bg-transparent',
+    activeStyle: 'text-white/50 border-white/15 bg-white/[0.04]',
+    dot: 'bg-white/30',
+  },
 ]
 
 export function Dashboard() {
   const { user, signOut } = useAuth()
   const { brokers } = useBrokers()
   const broker = brokers.find(b => b.email === user?.email) ?? brokers[0]
-  const { items, loading, error } = useInsightFeed(broker?.id)
+  const { items, loading, error, pendingDiff, flushPending } = useInsightFeed(broker?.id)
   const [searchParams, setSearchParams] = useSearchParams()
   const [activeFilter, setActiveFilter] = useState<FilterType>(
     (searchParams.get('filter') as FilterType) ?? 'all'
@@ -77,15 +84,47 @@ export function Dashboard() {
     'there'
   const firstName = displayName.split(' ')[0]
 
-  const filtered = activeFilter === 'all'
-    ? items
-    : items.filter(i => i.insight_type === activeFilter)
+  // Split active vs inactive; the 'All' shows only active, 'Inactive' shows retired/inactive
+  const activeItems   = items.filter(i => i.is_active)
+  const inactiveItems = items.filter(i => !i.is_active)
 
-  const urgentCount = items.filter(i => i.priority === 'urgent').length
+  const filtered =
+    activeFilter === 'inactive'
+      ? inactiveItems
+      : activeFilter === 'all'
+        ? activeItems
+        : activeItems.filter(i => i.insight_type === activeFilter)
+
+  const urgentCount = activeItems.filter(i => i.priority === 'urgent').length
+
+  // Build banner label from the diff
+  const bannerLabel = (() => {
+    if (!pendingDiff) return null
+    const { added, removed } = pendingDiff
+    if (added > 0 && removed > 0) return `+${added} new, ${removed} removed`
+    if (added > 0) return `+${added} new insight${added === 1 ? '' : 's'}`
+    return `${removed} insight${removed === 1 ? '' : 's'} removed`
+  })()
 
   return (
     <div className="min-h-screen px-gradient-bg flex flex-col">
       <Header brokerName={displayName} onSignOut={signOut} />
+
+      {/* Pending-changes banner — only mounts when pendingDiff is non-null */}
+      {bannerLabel && (
+        <div className="sticky top-0 z-50 flex justify-center px-4 py-2 pointer-events-none">
+          <button
+            onClick={flushPending}
+            className="pointer-events-auto inline-flex items-center gap-2.5 rounded-full border border-white/20 bg-[#0f0f1a]/90 backdrop-blur-md px-5 py-2 text-[12px] font-semibold text-white shadow-lg transition-all duration-200 hover:bg-white/10 hover:border-white/30 active:scale-95"
+          >
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
+            </span>
+            {bannerLabel} — Refresh
+          </button>
+        </div>
+      )}
 
       <main className="flex-1 flex flex-col items-center px-4 sm:px-6 py-8 overflow-auto">
         <div className="w-full max-w-[1000px]">
@@ -102,9 +141,9 @@ export function Dashboard() {
                 Powered by CRM · Inventory · Market data
               </p>
             </div>
-            {!loading && items.length > 0 && (
+            {!loading && activeItems.length > 0 && (
               <div className="hidden sm:flex flex-col items-end gap-1 shrink-0 ml-6 pb-1">
-                <span className="text-2xl font-bold text-white">{items.length}</span>
+                <span className="text-2xl font-bold text-white">{activeItems.length}</span>
                 <span className="text-[10px] uppercase tracking-widest text-white/30 font-semibold">Actions</span>
                 {urgentCount > 0 && (
                   <span className="text-[10px] text-red-400 font-semibold">{urgentCount} urgent</span>
@@ -117,8 +156,14 @@ export function Dashboard() {
           {!loading && !error && items.length > 0 && (
             <div className="flex flex-wrap gap-2 mb-6 animate-fade-in-d1">
               {FILTERS.map(f => {
-                const count = f.key === 'all' ? items.length : items.filter(i => i.insight_type === f.key).length
-                if (f.key !== 'all' && count === 0) return null
+                const count =
+                  f.key === 'inactive'
+                    ? inactiveItems.length
+                    : f.key === 'all'
+                      ? activeItems.length
+                      : activeItems.filter(i => i.insight_type === f.key).length
+                if (f.key !== 'all' && f.key !== 'inactive' && count === 0) return null
+                if (f.key === 'inactive' && count === 0) return null
                 const isActive = activeFilter === f.key
                 return (
                   <button
@@ -156,7 +201,7 @@ export function Dashboard() {
           ) : filtered.length === 0 ? (
             <div className="px-glass p-10 text-center animate-fade-in">
               <p className="text-white/40 text-sm">
-                {items.length === 0
+                {activeItems.length === 0
                   ? 'No active insights right now. Run the intelligence refresh to generate actions.'
                   : 'No insights of this type right now.'}
               </p>
