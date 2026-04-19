@@ -60,14 +60,23 @@ export function InsightCard({ item, delay = 0 }: InsightCardProps) {
   const navigate = useNavigate()
   const delayClass = delay <= 1 ? `animate-fade-in-d${delay}` : 'animate-fade-in-d4'
   const meta = TYPE_META[item.insight_type as InsightType] ?? TYPE_META.activate_segment
+  const isInactive = !item.is_active
 
-  const cardStyle: React.CSSProperties = {
-    background: `linear-gradient(135deg, rgba(${meta.rgb}, 0.07) 0%, rgba(255,255,255,0.015) 55%)`,
-    border: `1px solid rgba(${meta.rgb}, 0.18)`,
-    borderLeft: `3px solid ${meta.hex}`,
-    borderRadius: '12px',
-    boxShadow: `-4px 0 28px -6px rgba(${meta.rgb}, 0.22)`,
-  }
+  const cardStyle: React.CSSProperties = isInactive
+    ? {
+        background: 'linear-gradient(135deg, rgba(255,255,255,0.025) 0%, rgba(255,255,255,0.01) 55%)',
+        border: '1px solid rgba(255,255,255,0.07)',
+        borderLeft: '3px solid rgba(255,255,255,0.15)',
+        borderRadius: '12px',
+        opacity: 0.6,
+      }
+    : {
+        background: `linear-gradient(135deg, rgba(${meta.rgb}, 0.07) 0%, rgba(255,255,255,0.015) 55%)`,
+        border: `1px solid rgba(${meta.rgb}, 0.18)`,
+        borderLeft: `3px solid ${meta.hex}`,
+        borderRadius: '12px',
+        boxShadow: `-4px 0 28px -6px rgba(${meta.rgb}, 0.22)`,
+      }
 
   return (
     <div
@@ -77,13 +86,22 @@ export function InsightCard({ item, delay = 0 }: InsightCardProps) {
     >
       {/* Type badge + priority row */}
       <div className="flex items-center justify-between mb-4">
-        <div className={`flex items-center gap-2 ${meta.textCls}`}>
-          <span className={`h-1.5 w-1.5 rounded-full ${meta.dotCls} animate-pulse shrink-0`} />
+        <div className={`flex items-center gap-2 ${isInactive ? 'text-white/30' : meta.textCls}`}>
+          <span className={`h-1.5 w-1.5 rounded-full ${isInactive ? 'bg-white/20' : meta.dotCls + ' animate-pulse'} shrink-0`} />
           <span className="text-[10px] font-bold uppercase tracking-[0.12em]">{meta.label}</span>
         </div>
-        <span className="text-[10px] font-semibold uppercase tracking-wider text-white/25 bg-white/[0.05] border border-white/[0.07] rounded-full px-2.5 py-0.5">
-          {item.priority}
-        </span>
+        <div className="flex items-center gap-2">
+          {isInactive && (
+            <span className="text-[10px] font-semibold uppercase tracking-wider text-white/30 bg-white/[0.04] border border-white/[0.08] rounded-full px-2.5 py-0.5">
+              {item.state ?? 'retired'}
+            </span>
+          )}
+          {!isInactive && (
+            <span className="text-[10px] font-semibold uppercase tracking-wider text-white/25 bg-white/[0.05] border border-white/[0.07] rounded-full px-2.5 py-0.5">
+              {item.priority}
+            </span>
+          )}
+        </div>
       </div>
 
       {/* Title */}
