@@ -21,12 +21,14 @@ export function useInsightFeed(brokerId?: string) {
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    async function fetch() {
-      setLoading(true)
+    let cancelled = false
+
+    async function load(showSpinner: boolean) {
+      if (showSpinner) setLoading(true)
       let query = supabase
         .from('v_insight_feed')
         .select('*')
-        .eq('is_active', true)
+        // Fetch all insights (active + inactive) — frontend splits them by is_active.
         // Primary: newest first. For items with identical timestamps (batch inserts),
         // tie-break by `id` (UUID) to avoid grouping identical-type batches together.
         .order('created_at', { ascending: false })
@@ -37,14 +39,24 @@ export function useInsightFeed(brokerId?: string) {
       }
 
       const { data, error: err } = await query
+      if (cancelled) return
       if (err) {
         setError(err.message)
       } else {
         setItems((data ?? []) as InsightFeedItem[])
       }
-      setLoading(false)
+      if (showSpinner) setLoading(false)
     }
-    fetch()
+
+    load(true)
+
+    // Auto-refresh every 30 seconds — runs silently in the background without
+    // showing the loading spinner so the UI doesn't flash.
+    const interval = setInterval(() => load(false), 30_000)
+    return () => {
+      cancelled = true
+      clearInterval(interval)
+    }
   }, [brokerId])
 
   return { items, loading, error }
