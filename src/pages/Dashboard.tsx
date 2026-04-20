@@ -117,7 +117,7 @@ export function Dashboard() {
   })()
 
   return (
-    <div className="min-h-screen px-gradient-bg flex flex-col">
+    <div className="min-h-screen px-gradient-bg flex flex-col overflow-x-hidden">
       <Header brokerName={displayName} onSignOut={signOut} />
 
       {/* Pending-changes banner — only mounts when pendingDiff is non-null */}

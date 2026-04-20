@@ -719,7 +719,7 @@ export function DataInputPage() {
   const [activeTab, setActiveTab] = useState<Tab>('crm')
 
   return (
-    <div className="min-h-screen px-gradient-bg flex flex-col">
+    <div className="min-h-screen px-gradient-bg flex flex-col overflow-x-hidden">
       <Header brokerName={displayName} onSignOut={signOut} />
 
       <main className="flex-1 flex flex-col items-center px-4 sm:px-6 py-8">
