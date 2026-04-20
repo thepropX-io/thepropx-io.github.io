@@ -97,6 +97,15 @@ export function Dashboard() {
 
   const urgentCount = activeItems.filter(i => i.priority === 'urgent').length
 
+  const PAGE_SIZE = 10
+  const [currentPage, setCurrentPage] = useState(1)
+
+  // Reset to page 1 whenever filter changes
+  useEffect(() => { setCurrentPage(1) }, [activeFilter])
+
+  const totalPages = Math.ceil(filtered.length / PAGE_SIZE)
+  const paginatedItems = filtered.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE)
+
   // Build banner label from the diff
   const bannerLabel = (() => {
     if (!pendingDiff) return null
@@ -207,11 +216,47 @@ export function Dashboard() {
               </p>
             </div>
           ) : (
-            <div className="space-y-4">
-              {filtered.map((item, idx) => (
-                <InsightCard key={item.id} item={item} delay={idx} />
-              ))}
-            </div>
+            <>
+              <div className="space-y-4">
+                {paginatedItems.map((item, idx) => (
+                  <InsightCard key={item.id} item={item} delay={idx} />
+                ))}
+              </div>
+
+              {totalPages > 1 && (
+                <div className="flex items-center justify-center gap-3 mt-8">
+                  <button
+                    onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                    disabled={currentPage === 1}
+                    className="px-4 py-1.5 rounded-full border border-white/[0.08] text-[12px] font-semibold text-white/50 hover:text-white hover:border-white/20 transition-all disabled:opacity-25 disabled:cursor-not-allowed"
+                  >
+                    ← Prev
+                  </button>
+
+                  {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
+                    <button
+                      key={page}
+                      onClick={() => setCurrentPage(page)}
+                      className={`h-8 w-8 rounded-full border text-[12px] font-semibold transition-all ${
+                        page === currentPage
+                          ? 'border-white/20 bg-white/[0.07] text-white'
+                          : 'border-white/[0.06] bg-transparent text-white/35 hover:text-white/70 hover:border-white/15'
+                      }`}
+                    >
+                      {page}
+                    </button>
+                  ))}
+
+                  <button
+                    onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+                    disabled={currentPage === totalPages}
+                    className="px-4 py-1.5 rounded-full border border-white/[0.08] text-[12px] font-semibold text-white/50 hover:text-white hover:border-white/20 transition-all disabled:opacity-25 disabled:cursor-not-allowed"
+                  >
+                    Next →
+                  </button>
+                </div>
+              )}
+            </>
           )}
         </div>
       </main>
