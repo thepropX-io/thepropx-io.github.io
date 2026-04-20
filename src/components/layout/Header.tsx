@@ -1,4 +1,5 @@
-import { LogOut, Zap } from 'lucide-react'
+import { LogOut, Zap, DatabaseZap } from 'lucide-react'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { useAuth } from '../../hooks/useAuth'
 
 interface HeaderProps {
@@ -8,11 +9,15 @@ interface HeaderProps {
 
 export function Header({ brokerName, onSignOut }: HeaderProps) {
   const { user } = useAuth()
+  const navigate = useNavigate()
+  const location = useLocation()
 
   // Prefer showing the authenticated user's email in the top-right pill
   // Fallback to brokerName or user metadata name if email is not available
   const nameToShow =
     user?.email || brokerName || user?.user_metadata?.name?.trim() || ''
+
+  const onDataInput = location.pathname !== '/data-input'
 
   return (
     <header className="h-14 border-b border-white/[0.06] flex items-center justify-between px-6 relative">
@@ -30,24 +35,36 @@ export function Header({ brokerName, onSignOut }: HeaderProps) {
         <span className="text-[10px] font-semibold uppercase tracking-[0.15em] text-white/20">Intelligence</span>
       </div>
 
-      {/* Right: live indicator + broker name + signout */}
-      {nameToShow && (
-        <div className="flex items-center gap-3">
-          <div className="flex items-center gap-2 bg-white/[0.03] border border-white/[0.06] rounded-full px-3 py-1.5">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
-            <span className="text-xs text-white/50 font-medium">{nameToShow}</span>
-          </div>
-          {onSignOut && (
-            <button
-              onClick={onSignOut}
-              className="rounded-full p-2 text-white/25 hover:text-white/60 hover:bg-white/[0.05] transition-colors cursor-pointer"
-              title="Sign out"
-            >
-              <LogOut size={15} />
-            </button>
-          )}
-        </div>
-      )}
+      {/* Right: data input button + live indicator + broker name + signout */}
+      <div className="flex items-center gap-3">
+        {onDataInput && (
+          <button
+            onClick={() => navigate('/data-input')}
+            className="flex items-center gap-1.5 rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1.5 text-xs text-white/40 hover:text-white/70 hover:bg-white/[0.06] hover:border-white/15 transition-colors cursor-pointer"
+            title="Input mock data"
+          >
+            <DatabaseZap size={12} />
+            <span className="hidden sm:inline font-medium">Data Input</span>
+          </button>
+        )}
+        {nameToShow && (
+          <>
+            <div className="flex items-center gap-2 bg-white/[0.03] border border-white/[0.06] rounded-full px-3 py-1.5">
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
+              <span className="text-xs text-white/50 font-medium">{nameToShow}</span>
+            </div>
+            {onSignOut && (
+              <button
+                onClick={onSignOut}
+                className="rounded-full p-2 text-white/25 hover:text-white/60 hover:bg-white/[0.05] transition-colors cursor-pointer"
+                title="Sign out"
+              >
+                <LogOut size={15} />
+              </button>
+            )}
+          </>
+        )}
+      </div>
     </header>
   )
 }
