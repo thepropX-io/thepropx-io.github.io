@@ -7,7 +7,7 @@ import { useBrokers } from '../hooks/useInsights'
 import { supabase } from '../lib/supabase'
 
 // ─── Tab types ──────────────────────────────────────────────────────────────
-type Tab = 'crm' | 'erp' | 'market' | 'profile'
+type Tab = 'crm' | 'erp' | 'market'
 
 // ─── Form state types ────────────────────────────────────────────────────────
 interface CRMForm {
@@ -38,8 +38,6 @@ interface ERPForm {
 }
 
 interface MarketForm {
-  tab: 'transaction' | 'occupancy'
-  // Transaction fields
   transaction_type: string
   transaction_date: string
   community: string
@@ -51,10 +49,6 @@ interface MarketForm {
   amount_aed: string
   aed_per_sqft: string
   sales_sequence: string
-  // Occupancy fields
-  occ_community: string
-  half_year: string
-  avg_occupancy_pct: string
 }
 
 // ─── Defaults ────────────────────────────────────────────────────────────────
@@ -71,11 +65,9 @@ const defaultERP: ERPForm = {
 }
 
 const defaultMarket: MarketForm = {
-  tab: 'transaction',
   transaction_type: 'Sales - Ready', transaction_date: '', community: '',
-  property_name: '', property_type: 'Apartment', unit_no: '', bedrooms: '1 B/R',
+  property_name: '', property_type: 'Apartment', unit_no: '', bedrooms: '1',
   size_sqft: '', amount_aed: '', aed_per_sqft: '', sales_sequence: 'Primary',
-  occ_community: '', half_year: 'H1 2026', avg_occupancy_pct: '',
 }
 
 // ─── Shared field styles ─────────────────────────────────────────────────────
@@ -467,12 +459,6 @@ function MarketFormPanel() {
   const [saving, setSaving] = useState(false)
   const [toast, setToast] = useState<{ type: 'success' | 'error'; message: string } | null>(null)
 
-  // Half-year options: H1/H2 from 2021 through 2027
-  const halfYears: string[] = []
-  for (let y = 2021; y <= 2027; y++) {
-    halfYears.push(`H1 ${y}`, `H2 ${y}`)
-  }
-
   function set(field: keyof MarketForm, value: string) {
     setForm(prev => ({ ...prev, [field]: value }))
   }
@@ -496,7 +482,7 @@ function MarketFormPanel() {
       property_name:    form.property_name,
       property_type:    form.property_type || null,
       unit_no:          form.unit_no || null,
-      bedrooms:         form.bedrooms || null,
+      bedrooms:         form.bedrooms ? parseInt(form.bedrooms) : null,
       size_sqft:        form.size_sqft ? parseFloat(form.size_sqft) : null,
       amount_aed:       parseFloat(form.amount_aed),
       aed_per_sqft:     form.aed_per_sqft ? parseFloat(form.aed_per_sqft) : null,
@@ -509,42 +495,9 @@ function MarketFormPanel() {
       size_sqft: '', amount_aed: '', aed_per_sqft: '', transaction_date: '' }))
   }
 
-  async function handleSubmitOccupancy(e: React.FormEvent) {
-    e.preventDefault()
-    if (!form.occ_community || !form.half_year || !form.avg_occupancy_pct) {
-      showToast('error', 'Community, period and occupancy % are required.')
-      return
-    }
-    setSaving(true)
-    const { error } = await supabase.from('market_occupancy').insert({
-      community:          form.occ_community,
-      half_year:          form.half_year,
-      avg_occupancy_pct:  parseFloat(form.avg_occupancy_pct),
-    })
-    setSaving(false)
-    if (error) { showToast('error', error.message); return }
-    showToast('success', 'Occupancy record added.')
-    setForm(prev => ({ ...prev, occ_community: '', avg_occupancy_pct: '' }))
-  }
-
   return (
     <>
-      {/* Sub-tab */}
-      <div className="flex gap-2 mb-5">
-        {(['transaction', 'occupancy'] as const).map(t => (
-          <button key={t} onClick={() => set('tab', t)}
-            className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors cursor-pointer ${
-              form.tab === t
-                ? 'bg-white/10 text-white border border-white/20'
-                : 'text-white/30 border border-white/[0.06] hover:text-white/50'
-            }`}>
-            {t === 'transaction' ? 'Transaction' : 'Occupancy'}
-          </button>
-        ))}
-      </div>
-
-      {form.tab === 'transaction' ? (
-        <form onSubmit={handleSubmitTransaction} className="space-y-4">
+      <form onSubmit={handleSubmitTransaction} className="space-y-4">
           <div className={GRID2}>
             <div>
               <label className={LABEL}>Transaction Type</label>
@@ -599,12 +552,12 @@ function MarketFormPanel() {
             <div>
               <label className={LABEL}>Bedrooms</label>
               <select className={SELECT} value={form.bedrooms} onChange={e => set('bedrooms', e.target.value)}>
-                <option value="0 B/R">Studio</option>
-                <option value="1 B/R">1 B/R</option>
-                <option value="2 B/R">2 B/R</option>
-                <option value="3 B/R">3 B/R</option>
-                <option value="4 B/R">4 B/R</option>
-                <option value="5 B/R">5+ B/R</option>
+                <option value="0">Studio</option>
+                <option value="1">1 B/R</option>
+                <option value="2">2 B/R</option>
+                <option value="3">3 B/R</option>
+                <option value="4">4 B/R</option>
+                <option value="5">5+ B/R</option>
               </select>
             </div>
             <div>
@@ -633,37 +586,6 @@ function MarketFormPanel() {
             </button>
           </div>
         </form>
-      ) : (
-        <form onSubmit={handleSubmitOccupancy} className="space-y-4">
-          <div className={GRID2}>
-            <div>
-              <label className={LABEL}>Community <span className="text-red-400">*</span></label>
-              <CommunityInput value={form.occ_community} onChange={v => set('occ_community', v)} required />
-            </div>
-            <div>
-              <label className={LABEL}>Period <span className="text-red-400">*</span></label>
-              <select className={SELECT} value={form.half_year} onChange={e => set('half_year', e.target.value)}>
-                {halfYears.map(hy => <option key={hy}>{hy}</option>)}
-              </select>
-            </div>
-          </div>
-
-          <div>
-            <label className={LABEL}>Average Occupancy (%) <span className="text-red-400">*</span></label>
-            <input className={INPUT} type="number" step="0.1" min="0" max="100"
-              placeholder="e.g. 87.5" value={form.avg_occupancy_pct}
-              onChange={e => set('avg_occupancy_pct', e.target.value)} onWheel={e => e.currentTarget.blur()} required />
-          </div>
-
-          <div className="pt-2">
-            <button type="submit" disabled={saving}
-              className="flex items-center gap-2 rounded-xl bg-purple-600 hover:bg-purple-500 disabled:opacity-50 disabled:cursor-not-allowed px-5 py-2.5 text-sm font-semibold text-white transition-colors cursor-pointer">
-              {saving && <Loader2 size={14} className="animate-spin" />}
-              {saving ? 'Saving…' : 'Add Occupancy Record'}
-            </button>
-          </div>
-        </form>
-      )}
       {toast && <Toast type={toast.type} message={toast.message} />}
     </>
   )
@@ -781,10 +703,9 @@ function ProfilePanel({ broker }: { broker: { id: string; name: string; email: s
 
 // ─── Main page ────────────────────────────────────────────────────────────────
 const TABS: { key: Tab; label: string; desc: string }[] = [
-  { key: 'crm',     label: 'CRM',     desc: 'Client mandates & buyer intent' },
-  { key: 'erp',     label: 'ERP',     desc: 'Inventory units & listings' },
-  { key: 'market',  label: 'Market',  desc: 'Transactions & occupancy' },
-  { key: 'profile', label: 'Profile', desc: 'Focus areas & broker settings' },
+  { key: 'crm',    label: 'CRM',    desc: 'Client mandates & buyer intent' },
+  { key: 'erp',    label: 'ERP',    desc: 'Inventory units & listings' },
+  { key: 'market', label: 'Market', desc: 'Transactions & occupancy' },
 ]
 
 export function DataInputPage() {
@@ -847,10 +768,9 @@ export function DataInputPage() {
 
           {/* Form panel */}
           <div className="rounded-2xl border border-white/[0.07] bg-white/[0.02] p-6">
-            {activeTab === 'crm'     && <CRMFormPanel />}
-            {activeTab === 'erp'     && <ERPFormPanel />}
-            {activeTab === 'market'  && <MarketFormPanel />}
-            {activeTab === 'profile' && <ProfilePanel broker={broker} />}
+            {activeTab === 'crm'    && <CRMFormPanel />}
+            {activeTab === 'erp'    && <ERPFormPanel />}
+            {activeTab === 'market' && <MarketFormPanel />}
           </div>
 
         </div>

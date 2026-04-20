@@ -42,7 +42,7 @@ export function useInsightFeed(brokerId?: string) {
       let query = supabase
         .from('v_insight_feed')
         .select('*')
-        .order('created_at', { ascending: false })
+        .order('updated_at', { ascending: false })
         .order('id', { ascending: false })
       if (brokerId) query = query.eq('broker_id', brokerId)
 

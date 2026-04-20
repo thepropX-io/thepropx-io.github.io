@@ -110,6 +110,7 @@ export function Dashboard() {
   const bannerLabel = (() => {
     if (!pendingDiff) return null
     const { added, removed } = pendingDiff
+    if (added > 0 && removed > 0 && added === removed) return `${added} insight${added === 1 ? '' : 's'} updated`
     if (added > 0 && removed > 0) return `+${added} new, ${removed} removed`
     if (added > 0) return `+${added} new insight${added === 1 ? '' : 's'}`
     return `${removed} insight${removed === 1 ? '' : 's'} removed`
