@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { ArrowLeft, FlaskConical, CheckCircle2, AlertCircle, Loader2, X, Plus } from 'lucide-react'
+import { ArrowLeft, FlaskConical, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react'
 import { Header } from '../components/layout/Header'
 import { useAuth } from '../hooks/useAuth'
 import { useBrokers } from '../hooks/useInsights'
@@ -586,116 +586,6 @@ function MarketFormPanel() {
             </button>
           </div>
         </form>
-      {toast && <Toast type={toast.type} message={toast.message} />}
-    </>
-  )
-}
-
-// ─── Profile / Focus Areas panel ────────────────────────────────────────────
-function ProfilePanel({ broker }: { broker: { id: string; name: string; email: string; focus_areas: string[] } | undefined }) {
-  const [areas, setAreas] = useState<string[]>(broker?.focus_areas ?? [])
-  const [input, setInput] = useState('')
-  const [saving, setSaving] = useState(false)
-  const [toast, setToast] = useState<{ type: 'success' | 'error'; message: string } | null>(null)
-
-  // Sync if broker loads after mount
-  useEffect(() => {
-    if (broker?.focus_areas) setAreas(broker.focus_areas)
-  }, [broker?.id])
-
-  function showToast(type: 'success' | 'error', message: string) {
-    setToast({ type, message })
-    setTimeout(() => setToast(null), 3500)
-  }
-
-  function addArea() {
-    const v = input.trim()
-    if (!v) return
-    if (areas.some(a => a.toLowerCase() === v.toLowerCase())) {
-      setInput('')
-      return
-    }
-    setAreas(prev => [...prev, v])
-    setInput('')
-  }
-
-  function removeArea(idx: number) {
-    setAreas(prev => prev.filter((_, i) => i !== idx))
-  }
-
-  async function handleSave() {
-    if (!broker) { showToast('error', 'Broker not loaded.'); return }
-    setSaving(true)
-    const { error } = await supabase
-      .schema('ai')
-      .from('brokers')
-      .update({ focus_areas: areas })
-      .eq('id', broker.id)
-    setSaving(false)
-    if (error) { showToast('error', error.message); return }
-    showToast('success', 'Focus areas updated. Re-run the pipeline to apply.')
-  }
-
-  return (
-    <>
-      <div className="space-y-5">
-        {/* Info banner */}
-        <div className="rounded-xl border border-amber-500/20 bg-amber-500/[0.06] px-4 py-3 text-[12px] text-amber-200/60 leading-relaxed">
-          <strong className="text-amber-300 font-semibold">Focus areas</strong> tell the pipeline which communities you already work in.
-          The <span className="text-amber-300">Reallocate Focus</span> insight fires when a community <em>outside</em> your focus list outperforms your best focus-area score.
-          Update this list and re-run the pipeline to see new recommendations.
-        </div>
-
-
-        {/* Current focus areas */}
-        <div>
-          <label className={LABEL}>Focus Areas</label>
-          <div className="flex flex-wrap gap-2 mb-3">
-            {areas.length === 0 && (
-              <span className="text-xs text-white/25 italic">No focus areas set — pipeline uses top 3 communities by inventory count.</span>
-            )}
-            {areas.map((a, i) => (
-              <span key={i} className="inline-flex items-center gap-1.5 rounded-full border border-purple-500/30 bg-purple-500/10 px-3 py-1 text-xs font-medium text-purple-300">
-                {a}
-                <button type="button" onClick={() => removeArea(i)} className="text-purple-400/60 hover:text-purple-300 transition-colors">
-                  <X size={11} />
-                </button>
-              </span>
-            ))}
-          </div>
-
-          {/* Add new area */}
-          <div className="flex gap-2">
-            <div className="relative flex-1" >
-              <CommunityInput
-                value={input}
-                onChange={setInput}
-                placeholder="Add community e.g. Palm Jumeirah"
-              />
-            </div>
-            <button
-              type="button"
-              onClick={addArea}
-              className="flex items-center gap-1.5 rounded-xl border border-purple-500/30 bg-purple-500/10 px-4 py-2 text-sm font-semibold text-purple-300 hover:bg-purple-500/20 transition-colors cursor-pointer"
-            >
-              <Plus size={14} />
-              Add
-            </button>
-          </div>
-        </div>
-
-        {/* Save */}
-        <div className="pt-1">
-          <button
-            onClick={handleSave}
-            disabled={saving}
-            className="flex items-center gap-2 rounded-xl bg-purple-600 hover:bg-purple-500 disabled:opacity-50 disabled:cursor-not-allowed px-5 py-2.5 text-sm font-semibold text-white transition-colors cursor-pointer"
-          >
-            {saving && <Loader2 size={14} className="animate-spin" />}
-            {saving ? 'Saving…' : 'Save Focus Areas'}
-          </button>
-        </div>
-      </div>
       {toast && <Toast type={toast.type} message={toast.message} />}
     </>
   )
