@@ -1,0 +1,5220 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "API Documentation for propX based on Open API specs",
+    "title": "propX API",
+    "version": "1.0.0"
+  },
+  "host": "okzafkjcyojhmjppvzep.supabase.co:443",
+  "basePath": "/rest/v1/",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json",
+    "application/vnd.pgrst.object+json;nulls=stripped",
+    "application/vnd.pgrst.object+json",
+    "text/csv"
+  ],
+  "produces": [
+    "application/json",
+    "application/vnd.pgrst.object+json;nulls=stripped",
+    "application/vnd.pgrst.object+json",
+    "text/csv"
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "produces": [
+          "application/openapi+json",
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "summary": "OpenAPI description (this document)",
+        "tags": [
+          "Introspection"
+        ]
+      }
+    },
+    "/area_overview": {
+      "get": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.area_overview.community"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.area_overview.total_sale_value_2023"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.area_overview.total_sale_value_2024"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.area_overview.avg_property_price_2023"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.area_overview.avg_property_price_2024"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.area_overview.avg_price_per_sqft_2023"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.area_overview.avg_price_per_sqft_2024"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.area_overview.total_sale_value_increase"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.area_overview.avg_property_price_increase"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.area_overview.avg_price_per_sqft_increase"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.area_overview.introductiontext"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.area_overview.keyhighlights"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/order"
+          },
+          {
+            "$ref": "#/parameters/range"
+          },
+          {
+            "$ref": "#/parameters/rangeUnit"
+          },
+          {
+            "$ref": "#/parameters/offset"
+          },
+          {
+            "$ref": "#/parameters/limit"
+          },
+          {
+            "$ref": "#/parameters/preferCount"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/area_overview"
+              },
+              "type": "array"
+            }
+          },
+          "206": {
+            "description": "Partial Content"
+          }
+        },
+        "tags": [
+          "area_overview"
+        ]
+      },
+      "post": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/body.area_overview"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/preferPost"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        },
+        "tags": [
+          "area_overview"
+        ]
+      },
+      "delete": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.area_overview.community"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.area_overview.total_sale_value_2023"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.area_overview.total_sale_value_2024"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.area_overview.avg_property_price_2023"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.area_overview.avg_property_price_2024"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.area_overview.avg_price_per_sqft_2023"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.area_overview.avg_price_per_sqft_2024"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.area_overview.total_sale_value_increase"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.area_overview.avg_property_price_increase"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.area_overview.avg_price_per_sqft_increase"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.area_overview.introductiontext"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.area_overview.keyhighlights"
+          },
+          {
+            "$ref": "#/parameters/preferReturn"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "tags": [
+          "area_overview"
+        ]
+      },
+      "patch": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.area_overview.community"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.area_overview.total_sale_value_2023"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.area_overview.total_sale_value_2024"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.area_overview.avg_property_price_2023"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.area_overview.avg_property_price_2024"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.area_overview.avg_price_per_sqft_2023"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.area_overview.avg_price_per_sqft_2024"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.area_overview.total_sale_value_increase"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.area_overview.avg_property_price_increase"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.area_overview.avg_price_per_sqft_increase"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.area_overview.introductiontext"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.area_overview.keyhighlights"
+          },
+          {
+            "$ref": "#/parameters/body.area_overview"
+          },
+          {
+            "$ref": "#/parameters/preferReturn"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "tags": [
+          "area_overview"
+        ]
+      }
+    },
+    "/client_form_tokens": {
+      "get": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.client_form_tokens.id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.client_form_tokens.agent_id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.client_form_tokens.client_id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.client_form_tokens.created_at"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.client_form_tokens.expires_at"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.client_form_tokens.used_at"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.client_form_tokens.email_status"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.client_form_tokens.email_sent_at"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.client_form_tokens.email_delivered_at"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.client_form_tokens.email_clicked_at"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.client_form_tokens.email_error_details"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.client_form_tokens.email_failed_at"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/order"
+          },
+          {
+            "$ref": "#/parameters/range"
+          },
+          {
+            "$ref": "#/parameters/rangeUnit"
+          },
+          {
+            "$ref": "#/parameters/offset"
+          },
+          {
+            "$ref": "#/parameters/limit"
+          },
+          {
+            "$ref": "#/parameters/preferCount"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/client_form_tokens"
+              },
+              "type": "array"
+            }
+          },
+          "206": {
+            "description": "Partial Content"
+          }
+        },
+        "tags": [
+          "client_form_tokens"
+        ]
+      },
+      "post": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/body.client_form_tokens"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/preferPost"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        },
+        "tags": [
+          "client_form_tokens"
+        ]
+      },
+      "delete": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.client_form_tokens.id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.client_form_tokens.agent_id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.client_form_tokens.client_id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.client_form_tokens.created_at"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.client_form_tokens.expires_at"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.client_form_tokens.used_at"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.client_form_tokens.email_status"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.client_form_tokens.email_sent_at"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.client_form_tokens.email_delivered_at"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.client_form_tokens.email_clicked_at"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.client_form_tokens.email_error_details"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.client_form_tokens.email_failed_at"
+          },
+          {
+            "$ref": "#/parameters/preferReturn"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "tags": [
+          "client_form_tokens"
+        ]
+      },
+      "patch": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.client_form_tokens.id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.client_form_tokens.agent_id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.client_form_tokens.client_id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.client_form_tokens.created_at"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.client_form_tokens.expires_at"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.client_form_tokens.used_at"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.client_form_tokens.email_status"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.client_form_tokens.email_sent_at"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.client_form_tokens.email_delivered_at"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.client_form_tokens.email_clicked_at"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.client_form_tokens.email_error_details"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.client_form_tokens.email_failed_at"
+          },
+          {
+            "$ref": "#/parameters/body.client_form_tokens"
+          },
+          {
+            "$ref": "#/parameters/preferReturn"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "tags": [
+          "client_form_tokens"
+        ]
+      }
+    },
+    "/listings_backup": {
+      "get": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.description"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.property_type"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.bedrooms"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.bathrooms"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.is_furnished"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.area"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.location_name"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.address"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.city"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.community"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.sub_community"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.tower"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.coordinates"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.price"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.is_verified"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.completion_status"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.score"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.average_price_per_sqft"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.expected_roi"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.distance_to_landmarks"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.amenities"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.amenities_text"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.expected_yield"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.valuation"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.expected_roi_number"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.similar_price_transactions"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.building_information"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.images"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/order"
+          },
+          {
+            "$ref": "#/parameters/range"
+          },
+          {
+            "$ref": "#/parameters/rangeUnit"
+          },
+          {
+            "$ref": "#/parameters/offset"
+          },
+          {
+            "$ref": "#/parameters/limit"
+          },
+          {
+            "$ref": "#/parameters/preferCount"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/listings_backup"
+              },
+              "type": "array"
+            }
+          },
+          "206": {
+            "description": "Partial Content"
+          }
+        },
+        "tags": [
+          "listings_backup"
+        ]
+      },
+      "post": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/body.listings_backup"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/preferPost"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        },
+        "tags": [
+          "listings_backup"
+        ]
+      },
+      "delete": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.description"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.property_type"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.bedrooms"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.bathrooms"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.is_furnished"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.area"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.location_name"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.address"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.city"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.community"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.sub_community"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.tower"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.coordinates"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.price"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.is_verified"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.completion_status"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.score"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.average_price_per_sqft"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.expected_roi"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.distance_to_landmarks"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.amenities"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.amenities_text"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.expected_yield"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.valuation"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.expected_roi_number"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.similar_price_transactions"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.building_information"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.images"
+          },
+          {
+            "$ref": "#/parameters/preferReturn"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "tags": [
+          "listings_backup"
+        ]
+      },
+      "patch": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.description"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.property_type"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.bedrooms"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.bathrooms"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.is_furnished"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.area"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.location_name"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.address"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.city"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.community"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.sub_community"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.tower"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.coordinates"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.price"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.is_verified"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.completion_status"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.score"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.average_price_per_sqft"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.expected_roi"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.distance_to_landmarks"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.amenities"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.amenities_text"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.expected_yield"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.valuation"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.expected_roi_number"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.similar_price_transactions"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.building_information"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_backup.images"
+          },
+          {
+            "$ref": "#/parameters/body.listings_backup"
+          },
+          {
+            "$ref": "#/parameters/preferReturn"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "tags": [
+          "listings_backup"
+        ]
+      }
+    },
+    "/areas": {
+      "get": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.areas.id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.areas.area_id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.areas.overview_description"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.areas.key_highlights"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.areas.accessibility_score"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.areas.amenities_score"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.areas.lifestyle_score"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.areas.affordability_score"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.areas.total_score"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.areas.total_score_out_of_5"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.areas.created_at"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.areas.updated_at"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.areas.area_name"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/order"
+          },
+          {
+            "$ref": "#/parameters/range"
+          },
+          {
+            "$ref": "#/parameters/rangeUnit"
+          },
+          {
+            "$ref": "#/parameters/offset"
+          },
+          {
+            "$ref": "#/parameters/limit"
+          },
+          {
+            "$ref": "#/parameters/preferCount"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/areas"
+              },
+              "type": "array"
+            }
+          },
+          "206": {
+            "description": "Partial Content"
+          }
+        },
+        "tags": [
+          "areas"
+        ]
+      },
+      "post": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/body.areas"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/preferPost"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        },
+        "tags": [
+          "areas"
+        ]
+      },
+      "delete": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.areas.id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.areas.area_id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.areas.overview_description"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.areas.key_highlights"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.areas.accessibility_score"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.areas.amenities_score"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.areas.lifestyle_score"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.areas.affordability_score"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.areas.total_score"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.areas.total_score_out_of_5"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.areas.created_at"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.areas.updated_at"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.areas.area_name"
+          },
+          {
+            "$ref": "#/parameters/preferReturn"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "tags": [
+          "areas"
+        ]
+      },
+      "patch": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.areas.id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.areas.area_id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.areas.overview_description"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.areas.key_highlights"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.areas.accessibility_score"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.areas.amenities_score"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.areas.lifestyle_score"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.areas.affordability_score"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.areas.total_score"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.areas.total_score_out_of_5"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.areas.created_at"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.areas.updated_at"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.areas.area_name"
+          },
+          {
+            "$ref": "#/parameters/body.areas"
+          },
+          {
+            "$ref": "#/parameters/preferReturn"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "tags": [
+          "areas"
+        ]
+      }
+    },
+    "/developers": {
+      "get": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.developers.id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.developers.developer_id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.developers.name"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.developers.logo_url"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.developers.developer_reputation"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.developers.sourced_from"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.developers.created_at"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.developers.updated_at"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/order"
+          },
+          {
+            "$ref": "#/parameters/range"
+          },
+          {
+            "$ref": "#/parameters/rangeUnit"
+          },
+          {
+            "$ref": "#/parameters/offset"
+          },
+          {
+            "$ref": "#/parameters/limit"
+          },
+          {
+            "$ref": "#/parameters/preferCount"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/developers"
+              },
+              "type": "array"
+            }
+          },
+          "206": {
+            "description": "Partial Content"
+          }
+        },
+        "tags": [
+          "developers"
+        ]
+      },
+      "post": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/body.developers"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/preferPost"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        },
+        "tags": [
+          "developers"
+        ]
+      },
+      "delete": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.developers.id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.developers.developer_id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.developers.name"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.developers.logo_url"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.developers.developer_reputation"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.developers.sourced_from"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.developers.created_at"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.developers.updated_at"
+          },
+          {
+            "$ref": "#/parameters/preferReturn"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "tags": [
+          "developers"
+        ]
+      },
+      "patch": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.developers.id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.developers.developer_id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.developers.name"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.developers.logo_url"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.developers.developer_reputation"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.developers.sourced_from"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.developers.created_at"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.developers.updated_at"
+          },
+          {
+            "$ref": "#/parameters/body.developers"
+          },
+          {
+            "$ref": "#/parameters/preferReturn"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "tags": [
+          "developers"
+        ]
+      }
+    },
+    "/clients": {
+      "get": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.clients.id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.clients.created_at"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.clients.full_name"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.clients.email_address"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.clients.phone_number"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.clients.purchase_purpose"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.clients.property_preferences"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.clients.location_preferences"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.clients.budget_and_financing"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.clients.timeline"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.clients.investment_criteria"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.clients.amenities_and_features"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.clients.additional_preferences"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.clients.user_id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.clients.saved_listings"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.clients.recommended_listings"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.clients.form_status"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/order"
+          },
+          {
+            "$ref": "#/parameters/range"
+          },
+          {
+            "$ref": "#/parameters/rangeUnit"
+          },
+          {
+            "$ref": "#/parameters/offset"
+          },
+          {
+            "$ref": "#/parameters/limit"
+          },
+          {
+            "$ref": "#/parameters/preferCount"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/clients"
+              },
+              "type": "array"
+            }
+          },
+          "206": {
+            "description": "Partial Content"
+          }
+        },
+        "tags": [
+          "clients"
+        ]
+      },
+      "post": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/body.clients"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/preferPost"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        },
+        "tags": [
+          "clients"
+        ]
+      },
+      "delete": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.clients.id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.clients.created_at"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.clients.full_name"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.clients.email_address"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.clients.phone_number"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.clients.purchase_purpose"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.clients.property_preferences"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.clients.location_preferences"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.clients.budget_and_financing"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.clients.timeline"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.clients.investment_criteria"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.clients.amenities_and_features"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.clients.additional_preferences"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.clients.user_id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.clients.saved_listings"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.clients.recommended_listings"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.clients.form_status"
+          },
+          {
+            "$ref": "#/parameters/preferReturn"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "tags": [
+          "clients"
+        ]
+      },
+      "patch": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.clients.id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.clients.created_at"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.clients.full_name"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.clients.email_address"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.clients.phone_number"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.clients.purchase_purpose"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.clients.property_preferences"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.clients.location_preferences"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.clients.budget_and_financing"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.clients.timeline"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.clients.investment_criteria"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.clients.amenities_and_features"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.clients.additional_preferences"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.clients.user_id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.clients.saved_listings"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.clients.recommended_listings"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.clients.form_status"
+          },
+          {
+            "$ref": "#/parameters/body.clients"
+          },
+          {
+            "$ref": "#/parameters/preferReturn"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "tags": [
+          "clients"
+        ]
+      }
+    },
+    "/listings_images": {
+      "get": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.listings_images.id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_images.images"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_images.listing_id"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/order"
+          },
+          {
+            "$ref": "#/parameters/range"
+          },
+          {
+            "$ref": "#/parameters/rangeUnit"
+          },
+          {
+            "$ref": "#/parameters/offset"
+          },
+          {
+            "$ref": "#/parameters/limit"
+          },
+          {
+            "$ref": "#/parameters/preferCount"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/listings_images"
+              },
+              "type": "array"
+            }
+          },
+          "206": {
+            "description": "Partial Content"
+          }
+        },
+        "tags": [
+          "listings_images"
+        ]
+      },
+      "post": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/body.listings_images"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/preferPost"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        },
+        "tags": [
+          "listings_images"
+        ]
+      },
+      "delete": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.listings_images.id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_images.images"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_images.listing_id"
+          },
+          {
+            "$ref": "#/parameters/preferReturn"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "tags": [
+          "listings_images"
+        ]
+      },
+      "patch": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.listings_images.id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_images.images"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings_images.listing_id"
+          },
+          {
+            "$ref": "#/parameters/body.listings_images"
+          },
+          {
+            "$ref": "#/parameters/preferReturn"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "tags": [
+          "listings_images"
+        ]
+      }
+    },
+    "/matched_buildings": {
+      "get": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.matched_buildings.id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.matched_buildings.matched_tower"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.matched_buildings.building_information"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/order"
+          },
+          {
+            "$ref": "#/parameters/range"
+          },
+          {
+            "$ref": "#/parameters/rangeUnit"
+          },
+          {
+            "$ref": "#/parameters/offset"
+          },
+          {
+            "$ref": "#/parameters/limit"
+          },
+          {
+            "$ref": "#/parameters/preferCount"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/matched_buildings"
+              },
+              "type": "array"
+            }
+          },
+          "206": {
+            "description": "Partial Content"
+          }
+        },
+        "tags": [
+          "matched_buildings"
+        ]
+      },
+      "post": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/body.matched_buildings"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/preferPost"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        },
+        "tags": [
+          "matched_buildings"
+        ]
+      },
+      "delete": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.matched_buildings.id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.matched_buildings.matched_tower"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.matched_buildings.building_information"
+          },
+          {
+            "$ref": "#/parameters/preferReturn"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "tags": [
+          "matched_buildings"
+        ]
+      },
+      "patch": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.matched_buildings.id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.matched_buildings.matched_tower"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.matched_buildings.building_information"
+          },
+          {
+            "$ref": "#/parameters/body.matched_buildings"
+          },
+          {
+            "$ref": "#/parameters/preferReturn"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "tags": [
+          "matched_buildings"
+        ]
+      }
+    },
+    "/median_property_prices": {
+      "get": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.median_property_prices.community"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.median_property_prices.bedrooms"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.median_property_prices.median_property_prices"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/order"
+          },
+          {
+            "$ref": "#/parameters/range"
+          },
+          {
+            "$ref": "#/parameters/rangeUnit"
+          },
+          {
+            "$ref": "#/parameters/offset"
+          },
+          {
+            "$ref": "#/parameters/limit"
+          },
+          {
+            "$ref": "#/parameters/preferCount"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/median_property_prices"
+              },
+              "type": "array"
+            }
+          },
+          "206": {
+            "description": "Partial Content"
+          }
+        },
+        "tags": [
+          "median_property_prices"
+        ]
+      },
+      "post": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/body.median_property_prices"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/preferPost"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        },
+        "tags": [
+          "median_property_prices"
+        ]
+      },
+      "delete": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.median_property_prices.community"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.median_property_prices.bedrooms"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.median_property_prices.median_property_prices"
+          },
+          {
+            "$ref": "#/parameters/preferReturn"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "tags": [
+          "median_property_prices"
+        ]
+      },
+      "patch": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.median_property_prices.community"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.median_property_prices.bedrooms"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.median_property_prices.median_property_prices"
+          },
+          {
+            "$ref": "#/parameters/body.median_property_prices"
+          },
+          {
+            "$ref": "#/parameters/preferReturn"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "tags": [
+          "median_property_prices"
+        ]
+      }
+    },
+    "/projects": {
+      "get": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.projects.id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.developer_id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.project_id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.description"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.amenities"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.images"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.project_name"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.location_name"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.address"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.city"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.community"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.sub_community"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.tower"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.lat"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.lon"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.construction_phase"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.delivery_date"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.master_plan_description"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.master_plan_images"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.sales_phase"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.sales_start_date"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.starting_price"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.stock_availability"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.payment_plans"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.timeline_phases"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.units"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.property_types"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.sourced_from"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.url"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.area_id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.bedroom_counts"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.created_at"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.updated_at"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/order"
+          },
+          {
+            "$ref": "#/parameters/range"
+          },
+          {
+            "$ref": "#/parameters/rangeUnit"
+          },
+          {
+            "$ref": "#/parameters/offset"
+          },
+          {
+            "$ref": "#/parameters/limit"
+          },
+          {
+            "$ref": "#/parameters/preferCount"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/projects"
+              },
+              "type": "array"
+            }
+          },
+          "206": {
+            "description": "Partial Content"
+          }
+        },
+        "tags": [
+          "projects"
+        ]
+      },
+      "post": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/body.projects"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/preferPost"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        },
+        "tags": [
+          "projects"
+        ]
+      },
+      "delete": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.projects.id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.developer_id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.project_id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.description"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.amenities"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.images"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.project_name"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.location_name"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.address"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.city"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.community"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.sub_community"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.tower"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.lat"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.lon"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.construction_phase"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.delivery_date"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.master_plan_description"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.master_plan_images"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.sales_phase"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.sales_start_date"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.starting_price"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.stock_availability"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.payment_plans"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.timeline_phases"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.units"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.property_types"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.sourced_from"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.url"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.area_id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.bedroom_counts"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.created_at"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.updated_at"
+          },
+          {
+            "$ref": "#/parameters/preferReturn"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "tags": [
+          "projects"
+        ]
+      },
+      "patch": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.projects.id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.developer_id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.project_id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.description"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.amenities"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.images"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.project_name"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.location_name"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.address"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.city"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.community"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.sub_community"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.tower"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.lat"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.lon"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.construction_phase"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.delivery_date"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.master_plan_description"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.master_plan_images"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.sales_phase"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.sales_start_date"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.starting_price"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.stock_availability"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.payment_plans"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.timeline_phases"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.units"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.property_types"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.sourced_from"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.url"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.area_id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.bedroom_counts"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.created_at"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.projects.updated_at"
+          },
+          {
+            "$ref": "#/parameters/body.projects"
+          },
+          {
+            "$ref": "#/parameters/preferReturn"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "tags": [
+          "projects"
+        ]
+      }
+    },
+    "/listings": {
+      "get": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.listings.id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.description"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.property_type"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.bedrooms"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.bathrooms"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.is_furnished"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.area"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.location_name"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.address"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.city"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.community"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.sub_community"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.tower"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.coordinates"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.price"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.is_verified"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.completion_status"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.score"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.average_price_per_sqft"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.expected_roi"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.distance_to_landmarks"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.amenities"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.amenities_text"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.expected_yield"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.valuation"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.expected_roi_number"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.similar_price_transactions"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.building_information"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.images"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/order"
+          },
+          {
+            "$ref": "#/parameters/range"
+          },
+          {
+            "$ref": "#/parameters/rangeUnit"
+          },
+          {
+            "$ref": "#/parameters/offset"
+          },
+          {
+            "$ref": "#/parameters/limit"
+          },
+          {
+            "$ref": "#/parameters/preferCount"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/listings"
+              },
+              "type": "array"
+            }
+          },
+          "206": {
+            "description": "Partial Content"
+          }
+        },
+        "tags": [
+          "listings"
+        ]
+      },
+      "post": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/body.listings"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/preferPost"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        },
+        "tags": [
+          "listings"
+        ]
+      },
+      "delete": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.listings.id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.description"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.property_type"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.bedrooms"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.bathrooms"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.is_furnished"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.area"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.location_name"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.address"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.city"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.community"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.sub_community"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.tower"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.coordinates"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.price"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.is_verified"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.completion_status"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.score"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.average_price_per_sqft"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.expected_roi"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.distance_to_landmarks"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.amenities"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.amenities_text"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.expected_yield"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.valuation"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.expected_roi_number"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.similar_price_transactions"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.building_information"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.images"
+          },
+          {
+            "$ref": "#/parameters/preferReturn"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "tags": [
+          "listings"
+        ]
+      },
+      "patch": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.listings.id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.description"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.property_type"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.bedrooms"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.bathrooms"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.is_furnished"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.area"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.location_name"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.address"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.city"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.community"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.sub_community"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.tower"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.coordinates"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.price"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.is_verified"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.completion_status"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.score"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.average_price_per_sqft"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.expected_roi"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.distance_to_landmarks"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.amenities"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.amenities_text"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.expected_yield"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.valuation"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.expected_roi_number"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.similar_price_transactions"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.building_information"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.listings.images"
+          },
+          {
+            "$ref": "#/parameters/body.listings"
+          },
+          {
+            "$ref": "#/parameters/preferReturn"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "tags": [
+          "listings"
+        ]
+      }
+    },
+    "/median_rental_income": {
+      "get": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.median_rental_income.community"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.median_rental_income.bedrooms"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.median_rental_income.median_annual_rental_income"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/order"
+          },
+          {
+            "$ref": "#/parameters/range"
+          },
+          {
+            "$ref": "#/parameters/rangeUnit"
+          },
+          {
+            "$ref": "#/parameters/offset"
+          },
+          {
+            "$ref": "#/parameters/limit"
+          },
+          {
+            "$ref": "#/parameters/preferCount"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/median_rental_income"
+              },
+              "type": "array"
+            }
+          },
+          "206": {
+            "description": "Partial Content"
+          }
+        },
+        "tags": [
+          "median_rental_income"
+        ]
+      },
+      "post": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/body.median_rental_income"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/preferPost"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        },
+        "tags": [
+          "median_rental_income"
+        ]
+      },
+      "delete": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.median_rental_income.community"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.median_rental_income.bedrooms"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.median_rental_income.median_annual_rental_income"
+          },
+          {
+            "$ref": "#/parameters/preferReturn"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "tags": [
+          "median_rental_income"
+        ]
+      },
+      "patch": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.median_rental_income.community"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.median_rental_income.bedrooms"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.median_rental_income.median_annual_rental_income"
+          },
+          {
+            "$ref": "#/parameters/body.median_rental_income"
+          },
+          {
+            "$ref": "#/parameters/preferReturn"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "tags": [
+          "median_rental_income"
+        ]
+      }
+    },
+    "/documents": {
+      "get": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.documents.text"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.documents.n_tokens"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.documents.embeddings"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.documents.id"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/order"
+          },
+          {
+            "$ref": "#/parameters/range"
+          },
+          {
+            "$ref": "#/parameters/rangeUnit"
+          },
+          {
+            "$ref": "#/parameters/offset"
+          },
+          {
+            "$ref": "#/parameters/limit"
+          },
+          {
+            "$ref": "#/parameters/preferCount"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/documents"
+              },
+              "type": "array"
+            }
+          },
+          "206": {
+            "description": "Partial Content"
+          }
+        },
+        "tags": [
+          "documents"
+        ]
+      },
+      "post": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/body.documents"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/preferPost"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        },
+        "tags": [
+          "documents"
+        ]
+      },
+      "delete": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.documents.text"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.documents.n_tokens"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.documents.embeddings"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.documents.id"
+          },
+          {
+            "$ref": "#/parameters/preferReturn"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "tags": [
+          "documents"
+        ]
+      },
+      "patch": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.documents.text"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.documents.n_tokens"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.documents.embeddings"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.documents.id"
+          },
+          {
+            "$ref": "#/parameters/body.documents"
+          },
+          {
+            "$ref": "#/parameters/preferReturn"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "tags": [
+          "documents"
+        ]
+      }
+    },
+    "/rpc/is_user_admin": {
+      "post": {
+        "parameters": [
+          {
+            "in": "body",
+            "name": "args",
+            "required": true,
+            "schema": {
+              "properties": {
+                "uid": {
+                  "format": "uuid",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "uid"
+              ],
+              "type": "object"
+            }
+          },
+          {
+            "$ref": "#/parameters/preferParams"
+          }
+        ],
+        "produces": [
+          "application/json",
+          "application/vnd.pgrst.object+json;nulls=stripped",
+          "application/vnd.pgrst.object+json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "tags": [
+          "(rpc) is_user_admin"
+        ]
+      }
+    },
+    "/rpc/execute_listings_query": {
+      "post": {
+        "parameters": [
+          {
+            "in": "body",
+            "name": "args",
+            "required": true,
+            "schema": {
+              "properties": {
+                "query_text": {
+                  "format": "text",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "query_text"
+              ],
+              "type": "object"
+            }
+          },
+          {
+            "$ref": "#/parameters/preferParams"
+          }
+        ],
+        "produces": [
+          "application/json",
+          "application/vnd.pgrst.object+json;nulls=stripped",
+          "application/vnd.pgrst.object+json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "tags": [
+          "(rpc) execute_listings_query"
+        ]
+      }
+    },
+    "/rpc/projects_within_viewport": {
+      "post": {
+        "parameters": [
+          {
+            "in": "body",
+            "name": "args",
+            "required": true,
+            "schema": {
+              "properties": {
+                "availability_status_filter": {
+                  "format": "text[]",
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "bedroom_counts_filter": {
+                  "format": "integer[]",
+                  "items": {
+                    "type": "integer"
+                  },
+                  "type": "array"
+                },
+                "delivery_date_filter": {
+                  "format": "jsonb"
+                },
+                "developer_ids_filter": {
+                  "format": "text[]",
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "items_per_page": {
+                  "format": "integer",
+                  "type": "integer"
+                },
+                "max_lat": {
+                  "format": "double precision",
+                  "type": "number"
+                },
+                "max_lng": {
+                  "format": "double precision",
+                  "type": "number"
+                },
+                "max_price": {
+                  "format": "integer",
+                  "type": "integer"
+                },
+                "min_lat": {
+                  "format": "double precision",
+                  "type": "number"
+                },
+                "min_lng": {
+                  "format": "double precision",
+                  "type": "number"
+                },
+                "min_price": {
+                  "format": "integer",
+                  "type": "integer"
+                },
+                "page_number": {
+                  "format": "integer",
+                  "type": "integer"
+                },
+                "property_types_filter": {
+                  "format": "text",
+                  "type": "string"
+                },
+                "saved_project_ids": {
+                  "format": "integer[]",
+                  "items": {
+                    "type": "integer"
+                  },
+                  "type": "array"
+                },
+                "sort_ascending": {
+                  "format": "boolean",
+                  "type": "boolean"
+                },
+                "sort_by": {
+                  "format": "text",
+                  "type": "string"
+                },
+                "view_mode": {
+                  "format": "text",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "min_lat",
+                "max_lat",
+                "min_lng",
+                "max_lng",
+                "page_number",
+                "items_per_page",
+                "sort_by",
+                "sort_ascending",
+                "min_price",
+                "max_price",
+                "property_types_filter",
+                "bedroom_counts_filter",
+                "delivery_date_filter",
+                "developer_ids_filter",
+                "availability_status_filter"
+              ],
+              "type": "object"
+            }
+          },
+          {
+            "$ref": "#/parameters/preferParams"
+          }
+        ],
+        "produces": [
+          "application/json",
+          "application/vnd.pgrst.object+json;nulls=stripped",
+          "application/vnd.pgrst.object+json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "tags": [
+          "(rpc) projects_within_viewport"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "area_overview": {
+      "properties": {
+        "community": {
+          "format": "character varying",
+          "maxLength": 255,
+          "type": "string"
+        },
+        "total_sale_value_2023": {
+          "format": "numeric",
+          "type": "number"
+        },
+        "total_sale_value_2024": {
+          "format": "numeric",
+          "type": "number"
+        },
+        "avg_property_price_2023": {
+          "format": "numeric",
+          "type": "number"
+        },
+        "avg_property_price_2024": {
+          "format": "numeric",
+          "type": "number"
+        },
+        "avg_price_per_sqft_2023": {
+          "format": "numeric",
+          "type": "number"
+        },
+        "avg_price_per_sqft_2024": {
+          "format": "numeric",
+          "type": "number"
+        },
+        "total_sale_value_increase": {
+          "format": "numeric",
+          "type": "number"
+        },
+        "avg_property_price_increase": {
+          "format": "numeric",
+          "type": "number"
+        },
+        "avg_price_per_sqft_increase": {
+          "format": "numeric",
+          "type": "number"
+        },
+        "introductiontext": {
+          "format": "text",
+          "type": "string"
+        },
+        "keyhighlights": {
+          "format": "jsonb"
+        }
+      },
+      "type": "object"
+    },
+    "client_form_tokens": {
+      "required": [
+        "id",
+        "agent_id",
+        "client_id",
+        "created_at",
+        "expires_at"
+      ],
+      "properties": {
+        "id": {
+          "default": "gen_random_uuid()",
+          "description": "Note:\nThis is a Primary Key.<pk/>",
+          "format": "uuid",
+          "type": "string"
+        },
+        "agent_id": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "client_id": {
+          "description": "Note:\nThis is a Foreign Key to `clients.id`.<fk table='clients' column='id'/>",
+          "format": "bigint",
+          "type": "integer"
+        },
+        "created_at": {
+          "default": "now()",
+          "format": "timestamp with time zone",
+          "type": "string"
+        },
+        "expires_at": {
+          "format": "timestamp with time zone",
+          "type": "string"
+        },
+        "used_at": {
+          "format": "timestamp with time zone",
+          "type": "string"
+        },
+        "email_status": {
+          "default": "pending",
+          "enum": [
+            "pending",
+            "sent",
+            "delivered",
+            "failed",
+            "clicked"
+          ],
+          "format": "public.client_form_email_status_enum",
+          "type": "string"
+        },
+        "email_sent_at": {
+          "format": "timestamp with time zone",
+          "type": "string"
+        },
+        "email_delivered_at": {
+          "format": "timestamp with time zone",
+          "type": "string"
+        },
+        "email_clicked_at": {
+          "format": "timestamp with time zone",
+          "type": "string"
+        },
+        "email_error_details": {
+          "format": "text",
+          "type": "string"
+        },
+        "email_failed_at": {
+          "format": "timestamp with time zone",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "listings_backup": {
+      "required": [
+        "id",
+        "property_type",
+        "is_furnished",
+        "completion_status",
+        "expected_roi",
+        "valuation"
+      ],
+      "properties": {
+        "id": {
+          "description": "Note:\nThis is a Primary Key.<pk/>",
+          "format": "bigint",
+          "type": "integer"
+        },
+        "description": {
+          "format": "text",
+          "type": "string"
+        },
+        "property_type": {
+          "enum": [
+            "Apartment",
+            "Villa",
+            "Townhouse"
+          ],
+          "format": "public.listings_property_type_enum",
+          "type": "string"
+        },
+        "bedrooms": {
+          "format": "numeric",
+          "type": "number"
+        },
+        "bathrooms": {
+          "format": "numeric",
+          "type": "number"
+        },
+        "is_furnished": {
+          "enum": [
+            "YES",
+            "NO",
+            "PARTLY"
+          ],
+          "format": "public.listings_is_furnished_enum",
+          "type": "string"
+        },
+        "area": {
+          "format": "integer",
+          "type": "integer"
+        },
+        "location_name": {
+          "format": "text",
+          "type": "string"
+        },
+        "address": {
+          "format": "text",
+          "type": "string"
+        },
+        "city": {
+          "format": "text",
+          "type": "string"
+        },
+        "community": {
+          "format": "text",
+          "type": "string"
+        },
+        "sub_community": {
+          "format": "text",
+          "type": "string"
+        },
+        "tower": {
+          "format": "text",
+          "type": "string"
+        },
+        "coordinates": {
+          "format": "jsonb"
+        },
+        "price": {
+          "format": "bigint",
+          "type": "integer"
+        },
+        "is_verified": {
+          "format": "boolean",
+          "type": "boolean"
+        },
+        "completion_status": {
+          "enum": [
+            "completed",
+            "off_plan"
+          ],
+          "format": "public.listings_completion_status_enum",
+          "type": "string"
+        },
+        "score": {
+          "format": "double precision",
+          "type": "number"
+        },
+        "average_price_per_sqft": {
+          "format": "double precision",
+          "type": "number"
+        },
+        "expected_roi": {
+          "enum": [
+            "< 15%",
+            "> 15%"
+          ],
+          "format": "public.listings_expected_roi_enum",
+          "type": "string"
+        },
+        "distance_to_landmarks": {
+          "format": "text",
+          "type": "string"
+        },
+        "amenities": {
+          "format": "text[]",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "amenities_text": {
+          "format": "text",
+          "type": "string"
+        },
+        "expected_yield": {
+          "format": "numeric",
+          "type": "number"
+        },
+        "valuation": {
+          "enum": [
+            "High",
+            "Fair",
+            "Low"
+          ],
+          "format": "public.listings_valuation_enum",
+          "type": "string"
+        },
+        "expected_roi_number": {
+          "format": "numeric",
+          "type": "number"
+        },
+        "similar_price_transactions": {
+          "format": "jsonb"
+        },
+        "building_information": {
+          "format": "jsonb"
+        },
+        "images": {
+          "format": "text[]",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "areas": {
+      "required": [
+        "id",
+        "area_id",
+        "total_score",
+        "total_score_out_of_5",
+        "created_at",
+        "updated_at"
+      ],
+      "properties": {
+        "id": {
+          "description": "Note:\nThis is a Primary Key.<pk/>",
+          "format": "bigint",
+          "type": "integer"
+        },
+        "area_id": {
+          "format": "integer",
+          "type": "integer"
+        },
+        "overview_description": {
+          "format": "text",
+          "type": "string"
+        },
+        "key_highlights": {
+          "format": "jsonb"
+        },
+        "accessibility_score": {
+          "format": "numeric",
+          "type": "number"
+        },
+        "amenities_score": {
+          "format": "numeric",
+          "type": "number"
+        },
+        "lifestyle_score": {
+          "format": "numeric",
+          "type": "number"
+        },
+        "affordability_score": {
+          "format": "numeric",
+          "type": "number"
+        },
+        "total_score": {
+          "format": "numeric",
+          "type": "number"
+        },
+        "total_score_out_of_5": {
+          "format": "numeric",
+          "type": "number"
+        },
+        "created_at": {
+          "default": "now()",
+          "format": "timestamp with time zone",
+          "type": "string"
+        },
+        "updated_at": {
+          "default": "now()",
+          "format": "timestamp with time zone",
+          "type": "string"
+        },
+        "area_name": {
+          "format": "text",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "developers": {
+      "required": [
+        "id",
+        "developer_id",
+        "name",
+        "sourced_from",
+        "created_at"
+      ],
+      "properties": {
+        "id": {
+          "description": "Note:\nThis is a Primary Key.<pk/>",
+          "format": "bigint",
+          "type": "integer"
+        },
+        "developer_id": {
+          "format": "text",
+          "type": "string"
+        },
+        "name": {
+          "format": "text",
+          "type": "string"
+        },
+        "logo_url": {
+          "format": "text",
+          "type": "string"
+        },
+        "developer_reputation": {
+          "format": "numeric",
+          "type": "number"
+        },
+        "sourced_from": {
+          "format": "text",
+          "type": "string"
+        },
+        "created_at": {
+          "default": "now()",
+          "format": "timestamp with time zone",
+          "type": "string"
+        },
+        "updated_at": {
+          "default": "now()",
+          "format": "timestamp with time zone",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "clients": {
+      "required": [
+        "id",
+        "created_at",
+        "full_name",
+        "email_address",
+        "user_id",
+        "form_status"
+      ],
+      "properties": {
+        "id": {
+          "description": "Note:\nThis is a Primary Key.<pk/>",
+          "format": "bigint",
+          "type": "integer"
+        },
+        "created_at": {
+          "default": "now()",
+          "format": "timestamp with time zone",
+          "type": "string"
+        },
+        "full_name": {
+          "format": "text",
+          "type": "string"
+        },
+        "email_address": {
+          "format": "text",
+          "type": "string"
+        },
+        "phone_number": {
+          "format": "text",
+          "type": "string"
+        },
+        "purchase_purpose": {
+          "format": "text",
+          "type": "string"
+        },
+        "property_preferences": {
+          "format": "jsonb"
+        },
+        "location_preferences": {
+          "format": "jsonb"
+        },
+        "budget_and_financing": {
+          "format": "jsonb"
+        },
+        "timeline": {
+          "format": "text",
+          "type": "string"
+        },
+        "investment_criteria": {
+          "format": "text",
+          "type": "string"
+        },
+        "amenities_and_features": {
+          "format": "text[]",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "additional_preferences": {
+          "format": "text",
+          "type": "string"
+        },
+        "user_id": {
+          "default": "auth.uid()",
+          "format": "uuid",
+          "type": "string"
+        },
+        "saved_listings": {
+          "format": "bigint[]",
+          "items": {
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "recommended_listings": {
+          "format": "bigint[]",
+          "items": {
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "form_status": {
+          "enum": [
+            "pending",
+            "completed"
+          ],
+          "format": "public.clients_form_status_enum",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "listings_images": {
+      "required": [
+        "id",
+        "images",
+        "listing_id"
+      ],
+      "properties": {
+        "id": {
+          "description": "Note:\nThis is a Primary Key.<pk/>",
+          "format": "integer",
+          "type": "integer"
+        },
+        "images": {
+          "format": "text[]",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "listing_id": {
+          "description": "Note:\nThis is a Foreign Key to `listings.id`.<fk table='listings' column='id'/>",
+          "format": "integer",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "matched_buildings": {
+      "required": [
+        "id",
+        "matched_tower"
+      ],
+      "properties": {
+        "id": {
+          "description": "Note:\nThis is a Primary Key.<pk/>",
+          "format": "bigint",
+          "type": "integer"
+        },
+        "matched_tower": {
+          "format": "text",
+          "type": "string"
+        },
+        "building_information": {
+          "format": "jsonb"
+        }
+      },
+      "type": "object"
+    },
+    "median_property_prices": {
+      "properties": {
+        "community": {
+          "format": "character varying",
+          "maxLength": 255,
+          "type": "string"
+        },
+        "bedrooms": {
+          "format": "integer",
+          "type": "integer"
+        },
+        "median_property_prices": {
+          "format": "numeric",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "projects": {
+      "required": [
+        "id",
+        "developer_id",
+        "project_id",
+        "project_name",
+        "location_name",
+        "address",
+        "lat",
+        "lon",
+        "construction_phase",
+        "sourced_from",
+        "area_id",
+        "created_at"
+      ],
+      "properties": {
+        "id": {
+          "description": "Note:\nThis is a Primary Key.<pk/>",
+          "format": "bigint",
+          "type": "integer"
+        },
+        "developer_id": {
+          "description": "Note:\nThis is a Foreign Key to `developers.developer_id`.<fk table='developers' column='developer_id'/>",
+          "format": "text",
+          "type": "string"
+        },
+        "project_id": {
+          "format": "text",
+          "type": "string"
+        },
+        "description": {
+          "format": "text",
+          "type": "string"
+        },
+        "amenities": {
+          "format": "text[]",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "images": {
+          "format": "text[]",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "project_name": {
+          "format": "text",
+          "type": "string"
+        },
+        "location_name": {
+          "format": "text",
+          "type": "string"
+        },
+        "address": {
+          "format": "text",
+          "type": "string"
+        },
+        "city": {
+          "format": "text",
+          "type": "string"
+        },
+        "community": {
+          "format": "text",
+          "type": "string"
+        },
+        "sub_community": {
+          "format": "text",
+          "type": "string"
+        },
+        "tower": {
+          "format": "text",
+          "type": "string"
+        },
+        "lat": {
+          "format": "text",
+          "type": "string"
+        },
+        "lon": {
+          "format": "text",
+          "type": "string"
+        },
+        "construction_phase": {
+          "format": "text",
+          "type": "string"
+        },
+        "delivery_date": {
+          "format": "timestamp without time zone",
+          "type": "string"
+        },
+        "master_plan_description": {
+          "format": "text",
+          "type": "string"
+        },
+        "master_plan_images": {
+          "format": "text[]",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "sales_phase": {
+          "format": "text",
+          "type": "string"
+        },
+        "sales_start_date": {
+          "format": "timestamp without time zone",
+          "type": "string"
+        },
+        "starting_price": {
+          "format": "bigint",
+          "type": "integer"
+        },
+        "stock_availability": {
+          "format": "text",
+          "type": "string"
+        },
+        "payment_plans": {
+          "format": "jsonb"
+        },
+        "timeline_phases": {
+          "format": "jsonb"
+        },
+        "units": {
+          "format": "jsonb"
+        },
+        "property_types": {
+          "format": "text",
+          "type": "string"
+        },
+        "sourced_from": {
+          "format": "text",
+          "type": "string"
+        },
+        "url": {
+          "format": "text",
+          "type": "string"
+        },
+        "area_id": {
+          "description": "Note:\nThis is a Foreign Key to `areas.area_id`.<fk table='areas' column='area_id'/>",
+          "format": "integer",
+          "type": "integer"
+        },
+        "bedroom_counts": {
+          "format": "integer[]",
+          "items": {
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "created_at": {
+          "default": "now()",
+          "format": "timestamp with time zone",
+          "type": "string"
+        },
+        "updated_at": {
+          "default": "now()",
+          "format": "timestamp with time zone",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "listings": {
+      "required": [
+        "id",
+        "property_type",
+        "is_furnished",
+        "completion_status",
+        "expected_roi",
+        "valuation"
+      ],
+      "properties": {
+        "id": {
+          "description": "Note:\nThis is a Primary Key.<pk/>",
+          "format": "bigint",
+          "type": "integer"
+        },
+        "description": {
+          "format": "text",
+          "type": "string"
+        },
+        "property_type": {
+          "enum": [
+            "Apartment",
+            "Villa",
+            "Townhouse"
+          ],
+          "format": "public.listings_property_type_enum",
+          "type": "string"
+        },
+        "bedrooms": {
+          "format": "numeric",
+          "type": "number"
+        },
+        "bathrooms": {
+          "format": "numeric",
+          "type": "number"
+        },
+        "is_furnished": {
+          "enum": [
+            "YES",
+            "NO",
+            "PARTLY"
+          ],
+          "format": "public.listings_is_furnished_enum",
+          "type": "string"
+        },
+        "area": {
+          "format": "integer",
+          "type": "integer"
+        },
+        "location_name": {
+          "format": "text",
+          "type": "string"
+        },
+        "address": {
+          "format": "text",
+          "type": "string"
+        },
+        "city": {
+          "format": "text",
+          "type": "string"
+        },
+        "community": {
+          "format": "text",
+          "type": "string"
+        },
+        "sub_community": {
+          "format": "text",
+          "type": "string"
+        },
+        "tower": {
+          "format": "text",
+          "type": "string"
+        },
+        "coordinates": {
+          "format": "jsonb"
+        },
+        "price": {
+          "format": "bigint",
+          "type": "integer"
+        },
+        "is_verified": {
+          "format": "boolean",
+          "type": "boolean"
+        },
+        "completion_status": {
+          "enum": [
+            "completed",
+            "off_plan"
+          ],
+          "format": "public.listings_completion_status_enum",
+          "type": "string"
+        },
+        "score": {
+          "format": "double precision",
+          "type": "number"
+        },
+        "average_price_per_sqft": {
+          "format": "double precision",
+          "type": "number"
+        },
+        "expected_roi": {
+          "enum": [
+            "< 15%",
+            "> 15%"
+          ],
+          "format": "public.listings_expected_roi_enum",
+          "type": "string"
+        },
+        "distance_to_landmarks": {
+          "format": "text",
+          "type": "string"
+        },
+        "amenities": {
+          "format": "text[]",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "amenities_text": {
+          "format": "text",
+          "type": "string"
+        },
+        "expected_yield": {
+          "format": "numeric",
+          "type": "number"
+        },
+        "valuation": {
+          "enum": [
+            "High",
+            "Fair",
+            "Low"
+          ],
+          "format": "public.listings_valuation_enum",
+          "type": "string"
+        },
+        "expected_roi_number": {
+          "format": "numeric",
+          "type": "number"
+        },
+        "similar_price_transactions": {
+          "format": "jsonb"
+        },
+        "building_information": {
+          "format": "jsonb"
+        },
+        "images": {
+          "format": "text[]",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "median_rental_income": {
+      "properties": {
+        "community": {
+          "format": "character varying",
+          "maxLength": 255,
+          "type": "string"
+        },
+        "bedrooms": {
+          "format": "integer",
+          "type": "integer"
+        },
+        "median_annual_rental_income": {
+          "format": "numeric",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "documents": {
+      "required": [
+        "text",
+        "n_tokens",
+        "embeddings",
+        "id"
+      ],
+      "properties": {
+        "text": {
+          "format": "text",
+          "type": "string"
+        },
+        "n_tokens": {
+          "format": "integer",
+          "type": "integer"
+        },
+        "embeddings": {
+          "format": "public.vector(1536)",
+          "type": "string"
+        },
+        "id": {
+          "description": "Note:\nThis is a Primary Key.<pk/>",
+          "format": "bigint",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "parameters": {
+    "preferParams": {
+      "name": "Prefer",
+      "description": "Preference",
+      "required": false,
+      "enum": [],
+      "in": "header",
+      "type": "string"
+    },
+    "preferReturn": {
+      "name": "Prefer",
+      "description": "Preference",
+      "required": false,
+      "enum": [
+        "return=representation",
+        "return=minimal",
+        "return=none"
+      ],
+      "in": "header",
+      "type": "string"
+    },
+    "preferCount": {
+      "name": "Prefer",
+      "description": "Preference",
+      "required": false,
+      "enum": [
+        "count=none"
+      ],
+      "in": "header",
+      "type": "string"
+    },
+    "preferPost": {
+      "name": "Prefer",
+      "description": "Preference",
+      "required": false,
+      "enum": [
+        "return=representation",
+        "return=minimal",
+        "return=none",
+        "resolution=ignore-duplicates",
+        "resolution=merge-duplicates"
+      ],
+      "in": "header",
+      "type": "string"
+    },
+    "select": {
+      "name": "select",
+      "description": "Filtering Columns",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "on_conflict": {
+      "name": "on_conflict",
+      "description": "On Conflict",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "order": {
+      "name": "order",
+      "description": "Ordering",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "range": {
+      "name": "Range",
+      "description": "Limiting and Pagination",
+      "required": false,
+      "in": "header",
+      "type": "string"
+    },
+    "rangeUnit": {
+      "name": "Range-Unit",
+      "description": "Limiting and Pagination",
+      "required": false,
+      "default": "items",
+      "in": "header",
+      "type": "string"
+    },
+    "offset": {
+      "name": "offset",
+      "description": "Limiting and Pagination",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "limit": {
+      "name": "limit",
+      "description": "Limiting and Pagination",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "body.area_overview": {
+      "name": "area_overview",
+      "description": "area_overview",
+      "required": false,
+      "in": "body",
+      "schema": {
+        "$ref": "#/definitions/area_overview"
+      }
+    },
+    "rowFilter.area_overview.community": {
+      "name": "community",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.area_overview.total_sale_value_2023": {
+      "name": "total_sale_value_2023",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.area_overview.total_sale_value_2024": {
+      "name": "total_sale_value_2024",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.area_overview.avg_property_price_2023": {
+      "name": "avg_property_price_2023",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.area_overview.avg_property_price_2024": {
+      "name": "avg_property_price_2024",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.area_overview.avg_price_per_sqft_2023": {
+      "name": "avg_price_per_sqft_2023",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.area_overview.avg_price_per_sqft_2024": {
+      "name": "avg_price_per_sqft_2024",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.area_overview.total_sale_value_increase": {
+      "name": "total_sale_value_increase",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.area_overview.avg_property_price_increase": {
+      "name": "avg_property_price_increase",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.area_overview.avg_price_per_sqft_increase": {
+      "name": "avg_price_per_sqft_increase",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.area_overview.introductiontext": {
+      "name": "introductiontext",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.area_overview.keyhighlights": {
+      "name": "keyhighlights",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "body.client_form_tokens": {
+      "name": "client_form_tokens",
+      "description": "client_form_tokens",
+      "required": false,
+      "in": "body",
+      "schema": {
+        "$ref": "#/definitions/client_form_tokens"
+      }
+    },
+    "rowFilter.client_form_tokens.id": {
+      "name": "id",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.client_form_tokens.agent_id": {
+      "name": "agent_id",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.client_form_tokens.client_id": {
+      "name": "client_id",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.client_form_tokens.created_at": {
+      "name": "created_at",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.client_form_tokens.expires_at": {
+      "name": "expires_at",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.client_form_tokens.used_at": {
+      "name": "used_at",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.client_form_tokens.email_status": {
+      "name": "email_status",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.client_form_tokens.email_sent_at": {
+      "name": "email_sent_at",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.client_form_tokens.email_delivered_at": {
+      "name": "email_delivered_at",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.client_form_tokens.email_clicked_at": {
+      "name": "email_clicked_at",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.client_form_tokens.email_error_details": {
+      "name": "email_error_details",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.client_form_tokens.email_failed_at": {
+      "name": "email_failed_at",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "body.listings_backup": {
+      "name": "listings_backup",
+      "description": "listings_backup",
+      "required": false,
+      "in": "body",
+      "schema": {
+        "$ref": "#/definitions/listings_backup"
+      }
+    },
+    "rowFilter.listings_backup.id": {
+      "name": "id",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.listings_backup.description": {
+      "name": "description",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.listings_backup.property_type": {
+      "name": "property_type",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.listings_backup.bedrooms": {
+      "name": "bedrooms",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.listings_backup.bathrooms": {
+      "name": "bathrooms",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.listings_backup.is_furnished": {
+      "name": "is_furnished",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.listings_backup.area": {
+      "name": "area",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.listings_backup.location_name": {
+      "name": "location_name",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.listings_backup.address": {
+      "name": "address",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.listings_backup.city": {
+      "name": "city",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.listings_backup.community": {
+      "name": "community",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.listings_backup.sub_community": {
+      "name": "sub_community",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.listings_backup.tower": {
+      "name": "tower",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.listings_backup.coordinates": {
+      "name": "coordinates",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.listings_backup.price": {
+      "name": "price",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.listings_backup.is_verified": {
+      "name": "is_verified",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.listings_backup.completion_status": {
+      "name": "completion_status",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.listings_backup.score": {
+      "name": "score",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.listings_backup.average_price_per_sqft": {
+      "name": "average_price_per_sqft",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.listings_backup.expected_roi": {
+      "name": "expected_roi",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.listings_backup.distance_to_landmarks": {
+      "name": "distance_to_landmarks",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.listings_backup.amenities": {
+      "name": "amenities",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.listings_backup.amenities_text": {
+      "name": "amenities_text",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.listings_backup.expected_yield": {
+      "name": "expected_yield",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.listings_backup.valuation": {
+      "name": "valuation",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.listings_backup.expected_roi_number": {
+      "name": "expected_roi_number",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.listings_backup.similar_price_transactions": {
+      "name": "similar_price_transactions",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.listings_backup.building_information": {
+      "name": "building_information",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.listings_backup.images": {
+      "name": "images",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "body.areas": {
+      "name": "areas",
+      "description": "areas",
+      "required": false,
+      "in": "body",
+      "schema": {
+        "$ref": "#/definitions/areas"
+      }
+    },
+    "rowFilter.areas.id": {
+      "name": "id",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.areas.area_id": {
+      "name": "area_id",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.areas.overview_description": {
+      "name": "overview_description",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.areas.key_highlights": {
+      "name": "key_highlights",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.areas.accessibility_score": {
+      "name": "accessibility_score",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.areas.amenities_score": {
+      "name": "amenities_score",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.areas.lifestyle_score": {
+      "name": "lifestyle_score",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.areas.affordability_score": {
+      "name": "affordability_score",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.areas.total_score": {
+      "name": "total_score",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.areas.total_score_out_of_5": {
+      "name": "total_score_out_of_5",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.areas.created_at": {
+      "name": "created_at",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.areas.updated_at": {
+      "name": "updated_at",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.areas.area_name": {
+      "name": "area_name",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "body.developers": {
+      "name": "developers",
+      "description": "developers",
+      "required": false,
+      "in": "body",
+      "schema": {
+        "$ref": "#/definitions/developers"
+      }
+    },
+    "rowFilter.developers.id": {
+      "name": "id",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.developers.developer_id": {
+      "name": "developer_id",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.developers.name": {
+      "name": "name",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.developers.logo_url": {
+      "name": "logo_url",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.developers.developer_reputation": {
+      "name": "developer_reputation",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.developers.sourced_from": {
+      "name": "sourced_from",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.developers.created_at": {
+      "name": "created_at",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.developers.updated_at": {
+      "name": "updated_at",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "body.clients": {
+      "name": "clients",
+      "description": "clients",
+      "required": false,
+      "in": "body",
+      "schema": {
+        "$ref": "#/definitions/clients"
+      }
+    },
+    "rowFilter.clients.id": {
+      "name": "id",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.clients.created_at": {
+      "name": "created_at",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.clients.full_name": {
+      "name": "full_name",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.clients.email_address": {
+      "name": "email_address",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.clients.phone_number": {
+      "name": "phone_number",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.clients.purchase_purpose": {
+      "name": "purchase_purpose",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.clients.property_preferences": {
+      "name": "property_preferences",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.clients.location_preferences": {
+      "name": "location_preferences",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.clients.budget_and_financing": {
+      "name": "budget_and_financing",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.clients.timeline": {
+      "name": "timeline",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.clients.investment_criteria": {
+      "name": "investment_criteria",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.clients.amenities_and_features": {
+      "name": "amenities_and_features",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.clients.additional_preferences": {
+      "name": "additional_preferences",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.clients.user_id": {
+      "name": "user_id",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.clients.saved_listings": {
+      "name": "saved_listings",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.clients.recommended_listings": {
+      "name": "recommended_listings",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.clients.form_status": {
+      "name": "form_status",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "body.listings_images": {
+      "name": "listings_images",
+      "description": "listings_images",
+      "required": false,
+      "in": "body",
+      "schema": {
+        "$ref": "#/definitions/listings_images"
+      }
+    },
+    "rowFilter.listings_images.id": {
+      "name": "id",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.listings_images.images": {
+      "name": "images",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.listings_images.listing_id": {
+      "name": "listing_id",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "body.matched_buildings": {
+      "name": "matched_buildings",
+      "description": "matched_buildings",
+      "required": false,
+      "in": "body",
+      "schema": {
+        "$ref": "#/definitions/matched_buildings"
+      }
+    },
+    "rowFilter.matched_buildings.id": {
+      "name": "id",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.matched_buildings.matched_tower": {
+      "name": "matched_tower",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.matched_buildings.building_information": {
+      "name": "building_information",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "body.median_property_prices": {
+      "name": "median_property_prices",
+      "description": "median_property_prices",
+      "required": false,
+      "in": "body",
+      "schema": {
+        "$ref": "#/definitions/median_property_prices"
+      }
+    },
+    "rowFilter.median_property_prices.community": {
+      "name": "community",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.median_property_prices.bedrooms": {
+      "name": "bedrooms",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.median_property_prices.median_property_prices": {
+      "name": "median_property_prices",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "body.projects": {
+      "name": "projects",
+      "description": "projects",
+      "required": false,
+      "in": "body",
+      "schema": {
+        "$ref": "#/definitions/projects"
+      }
+    },
+    "rowFilter.projects.id": {
+      "name": "id",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.projects.developer_id": {
+      "name": "developer_id",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.projects.project_id": {
+      "name": "project_id",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.projects.description": {
+      "name": "description",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.projects.amenities": {
+      "name": "amenities",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.projects.images": {
+      "name": "images",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.projects.project_name": {
+      "name": "project_name",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.projects.location_name": {
+      "name": "location_name",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.projects.address": {
+      "name": "address",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.projects.city": {
+      "name": "city",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.projects.community": {
+      "name": "community",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.projects.sub_community": {
+      "name": "sub_community",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.projects.tower": {
+      "name": "tower",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.projects.lat": {
+      "name": "lat",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.projects.lon": {
+      "name": "lon",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.projects.construction_phase": {
+      "name": "construction_phase",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.projects.delivery_date": {
+      "name": "delivery_date",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.projects.master_plan_description": {
+      "name": "master_plan_description",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.projects.master_plan_images": {
+      "name": "master_plan_images",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.projects.sales_phase": {
+      "name": "sales_phase",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.projects.sales_start_date": {
+      "name": "sales_start_date",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.projects.starting_price": {
+      "name": "starting_price",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.projects.stock_availability": {
+      "name": "stock_availability",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.projects.payment_plans": {
+      "name": "payment_plans",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.projects.timeline_phases": {
+      "name": "timeline_phases",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.projects.units": {
+      "name": "units",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.projects.property_types": {
+      "name": "property_types",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.projects.sourced_from": {
+      "name": "sourced_from",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.projects.url": {
+      "name": "url",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.projects.area_id": {
+      "name": "area_id",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.projects.bedroom_counts": {
+      "name": "bedroom_counts",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.projects.created_at": {
+      "name": "created_at",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.projects.updated_at": {
+      "name": "updated_at",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "body.listings": {
+      "name": "listings",
+      "description": "listings",
+      "required": false,
+      "in": "body",
+      "schema": {
+        "$ref": "#/definitions/listings"
+      }
+    },
+    "rowFilter.listings.id": {
+      "name": "id",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.listings.description": {
+      "name": "description",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.listings.property_type": {
+      "name": "property_type",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.listings.bedrooms": {
+      "name": "bedrooms",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.listings.bathrooms": {
+      "name": "bathrooms",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.listings.is_furnished": {
+      "name": "is_furnished",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.listings.area": {
+      "name": "area",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.listings.location_name": {
+      "name": "location_name",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.listings.address": {
+      "name": "address",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.listings.city": {
+      "name": "city",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.listings.community": {
+      "name": "community",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.listings.sub_community": {
+      "name": "sub_community",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.listings.tower": {
+      "name": "tower",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.listings.coordinates": {
+      "name": "coordinates",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.listings.price": {
+      "name": "price",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.listings.is_verified": {
+      "name": "is_verified",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.listings.completion_status": {
+      "name": "completion_status",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.listings.score": {
+      "name": "score",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.listings.average_price_per_sqft": {
+      "name": "average_price_per_sqft",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.listings.expected_roi": {
+      "name": "expected_roi",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.listings.distance_to_landmarks": {
+      "name": "distance_to_landmarks",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.listings.amenities": {
+      "name": "amenities",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.listings.amenities_text": {
+      "name": "amenities_text",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.listings.expected_yield": {
+      "name": "expected_yield",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.listings.valuation": {
+      "name": "valuation",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.listings.expected_roi_number": {
+      "name": "expected_roi_number",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.listings.similar_price_transactions": {
+      "name": "similar_price_transactions",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.listings.building_information": {
+      "name": "building_information",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.listings.images": {
+      "name": "images",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "body.median_rental_income": {
+      "name": "median_rental_income",
+      "description": "median_rental_income",
+      "required": false,
+      "in": "body",
+      "schema": {
+        "$ref": "#/definitions/median_rental_income"
+      }
+    },
+    "rowFilter.median_rental_income.community": {
+      "name": "community",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.median_rental_income.bedrooms": {
+      "name": "bedrooms",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.median_rental_income.median_annual_rental_income": {
+      "name": "median_annual_rental_income",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "body.documents": {
+      "name": "documents",
+      "description": "documents",
+      "required": false,
+      "in": "body",
+      "schema": {
+        "$ref": "#/definitions/documents"
+      }
+    },
+    "rowFilter.documents.text": {
+      "name": "text",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.documents.n_tokens": {
+      "name": "n_tokens",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.documents.embeddings": {
+      "name": "embeddings",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.documents.id": {
+      "name": "id",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    }
+  },
+  "externalDocs": {
+    "description": "PostgREST Documentation",
+    "url": "https://postgrest.org/en/v13/references/api.html"
+  },
+  "securityDefinitions": {
+    "bearerAuth": {
+      "type": "apiKey",
+      "in": "header",
+      "name": "Authorization",
+      "description": "Enter: Bearer <your_user_jwt>. Get this from POST /auth/v1/token"
+    },
+    "apiKeyAuth": {
+      "type": "apiKey",
+      "in": "header",
+      "name": "apikey",
+      "description": "Your Supabase anon key (always required)"
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": [],
+      "apiKeyAuth": []
+    }
+  ]
+}

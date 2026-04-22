@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>API Docs</title>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://unpkg.com/swagger-ui-dist/swagger-ui.css">
+</head>
+<body>
+  <div id="swagger-ui"></div>
+  <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js"></script>
+  <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-standalone-preset.js"></script>
+  <script>
+    window.onload = function() {
+      SwaggerUIBundle({
+        urls: [
+          { url: "./openapi-spec-patched.json", name: "propX REST API" },
+          { url: "./auth-spec.yaml",            name: "propX Auth API" },
+        ],
+        "urls.primaryName": "Database REST API",
+        dom_id: '#swagger-ui',
+        presets: [
+          SwaggerUIBundle.presets.apis,
+          SwaggerUIStandalonePreset
+        ],
+        layout: "StandaloneLayout",
+        requestInterceptor: (request) => {
+          request.headers['apikey'] = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9remFma2pjeW9qaG1qcHB2emVwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjU0NDExNDQsImV4cCI6MjA0MTAxNzE0NH0.g3qfCBBC3ldivsx4h36F3myCEz_QtgTP3BBXR5JBUWE';
+          if (!request.headers['Authorization']) {
+            request.headers['Authorization'] = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9remFma2pjeW9qaG1qcHB2emVwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjU0NDExNDQsImV4cCI6MjA0MTAxNzE0NH0.g3qfCBBC3ldivsx4h36F3myCEz_QtgTP3BBXR5JBUWE';
+          }
+          return request;
+        }
+      })
+    }
+  </script>
+</body>
+</html>
