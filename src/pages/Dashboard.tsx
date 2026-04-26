@@ -108,13 +108,22 @@ export function Dashboard() {
 
   // Build banner label from the diff
   const bannerLabel = (() => {
-    if (!pendingDiff) return null
-    const { added, removed } = pendingDiff
-    if (added > 0 && removed > 0 && added === removed) return `${added} insight${added === 1 ? '' : 's'} updated`
-    if (added > 0 && removed > 0) return `+${added} new, ${removed} removed`
-    if (added > 0) return `+${added} new insight${added === 1 ? '' : 's'}`
-    return `${removed} insight${removed === 1 ? '' : 's'} removed`
-  })()
+  if (!pendingDiff) return null
+
+  const { added, removed } = pendingDiff
+  const net = added - removed
+
+  if (net > 0) {
+    return `+${net} new insight${net === 1 ? '' : 's'}`
+  }
+
+  if (net < 0) {
+    const removedCount = Math.abs(net)
+    return `${removedCount} insight${removedCount === 1 ? '' : 's'} removed`
+  }
+
+  return 'Insights updated'
+})()
 
   return (
     <div className="min-h-screen px-gradient-bg flex flex-col overflow-x-hidden">
